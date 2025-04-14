@@ -1,0 +1,476 @@
+---
+title: ""
+---
+
+# Meta-analysis for the variable severity
+
+## Packages
+
+```{r}
+#| warning: false
+#| message: false
+library(gsheet)
+library(tidyverse)
+library(broom)
+library(tidyr)
+library(metafor)
+library(multcomp)
+ library(emmeans)
+```
+
+## Import the data
+
+```{r}
+dat1 = gsheet2tbl("https://docs.google.com/spreadsheets/d/1joo0WaR7yNWZavGPbwQMjiFPpWHErtGL/edit?gid=1485993259#gid=1485993259")
+
+dat1 |> ggplot(aes(produto, mean_sev)) +
+  geom_boxplot()
+
+outliers <- dat1 %>%
+  filter(produto == "trat_A20259") %>%
+  group_by(produto, bloco) %>%
+  mutate(outlier = mean_sev < quantile(mean_sev, 0.25) - 1.5 * IQR(mean_sev) | 
+                   mean_sev > quantile(mean_sev, 0.75) + 1.5 * IQR(mean_sev)) %>%
+  filter(outlier) %>%
+  dplyr::select(ensaio_1, mean_sev)
+
+print(outliers)
+
+
+
+```
+
+
+## ANOVA for Each Trial/Study
+
+```{r}
+# Converting variables to factors  
+dat1$bloco = as.factor(dat1$bloco)   # Block as a factor  
+dat1$produto = as.factor(dat1$produto)   # fungicide as a factor  
+dat1$ensaio_1 = as.factor(dat1$ensaio_1)  # Trial as a factor  
+
+str(dat1)
+
+
+# Performing ANOVA to obtain Sum of Squares (Sq) and Mean Squares (MeanSq)
+dat2 <- dat1 %>%
+  filter(mean_sev != "NA")|> 
+  group_by(ensaio_1) %>%
+  dplyr::select(ensaio_1, produto, bloco, mean_sev) %>% 
+  nest(data = c(produto, bloco, mean_sev)) %>% 
+  dplyr::mutate(
+    aov_results = map(data, ~ tidy(aov(mean_sev ~ produto + bloco, data = .x)))
+  ) %>%
+  unnest(aov_results) %>%
+  filter(term == "Residuals")|> 
+  dplyr::select(1,6)
+```
+
+## Calculating the mean and adjusted variance
+
+```{r}
+#First: Merge the Original Spreadsheet (dat1) with the Spreadsheet Containing the ANOVA Results; 
+dat3 <- left_join(dat1, dat2) |> 
+ group_by(municipio,regiao, ensaio_1, produto, ano) %>% 
+  summarise(mean_sev = mean(mean_sev+0.1), #severity mean
+            mean_V = mean(meansq), #SQ mean
+            n = n()) |> 
+  mutate(log_sev = log(mean_sev)) #Mean of the transformed severity
+
+
+#Calculating adjusted variance of severity
+  dat3$vi_sev = with(dat3, mean_V / (n * mean_sev^2))
+  
+  
+
+```
+
+## Meta-analysis
+
+### Fitting different models
+
+Differences in structures were tested, and the one that best fit was the unstructured. The others are commented out.
+
+```{r}
+
+
+ net_arm_UN_first <- rma.mv(
+   log_sev,
+   vi_sev,
+   mods = ~ produto,
+   method = "ML",
+   random = list( ~ produto | factor(ensaio_1)),
+   struct = "HCS",
+   control = list(optimizer = "nlm"),
+   data = dat3)
+ summary(net_arm_UN_first)
+ 
+ 
+ #salvando
+ m1 <- data.frame(cbind(
+   (net_arm_UN_first$b),
+   (net_arm_UN_first$ci.lb),
+   (net_arm_UN_first$ci.ub),
+   (net_arm_UN_first$se)))
+ 
+ m1 = m1
+   names (m1) = c("log_sev", "sev_lw", "sev_up", "se")
+   
+  m1 <- m1 |>
+ mutate(fungicide = c("check", "ABACUSHC", "BAS75302F", "FOX XPRO", "OSKESTRASC", "PREVINIL", "A20259", "TRIDIUM", "UNIZEBGOLD")) 
+m1 <- m1 |>  
+    dplyr::select(fungicide, log_sev, sev_lw, sev_up,se)
+library(writexl)
+#write_xlsx(m1, "results_log_Sev.xlsx")
+
+```
+
+### Pairwise comparison
+
+```{r}
+#The glht() function is used to perform multiple comparisons between the groups adjusted by the model
+ net_arm_UN_comp <-
+   summary(glht(
+   model = net_arm_UN_first,
+   linfct = cbind(contrMat(rep(1, 9), type = "Tukey")) ))
+
+  net_arm_UN_comp
+
+ plot(net_arm_UN_comp)
+
+ 
+ 
+ 
+ library(emmeans)
+library(multcomp)
+meta <- emmprep(net_arm_UN_first)
+emmeans_meta <- emmeans(meta, ~ produto, type = "response")
+cld_result <- data.frame(cld(emmeans_meta, decreasing = TRUE, Letters = LETTERS))
+cld_result
+
+```
+
+```{r}
+ efficacy_index <- data.frame(cbind(
+   (1 - exp(net_arm_UN_first$b)) * 100,
+   (1 - exp(net_arm_UN_first$ci.lb)) * 100,
+   (1 - exp(net_arm_UN_first$ci.ub)) * 100))
+
+# #Organize the data.frame
+ efficacy_index = efficacy_index
+   names (efficacy_index) = c("efficacy", "efficacy_up", "efficacy_lw")
+  
+efficacy_index <- efficacy_index |>
+  mutate(fungicide = c("check", "ABACUSHC", "BAS75302F", "FOX XPRO", "OSKESTRASC", "PREVINIL", "A20259", "TRIDIUM", "UNIZEBGOLD")) |>
+  filter(fungicide != "check") |>
+  dplyr::select(fungicide, efficacy, efficacy_lw, efficacy_up)
+
+efficacy_index
+library(readr)
+
+write_xlsx(efficacy_index, "efficacy_res.xlsx")
+
+
+```
+
+Disease pressure
+
+Median
+
+```{r}
+#linha de base
+library(janitor)
+AACHECK = dat1 |> filter(produto == "AACHECK")
+summary(AACHECK)
+
+med_sev <- dat3 %>%
+  mutate(sev_check_class = case_when(
+      mean_sev < 21 ~ "low",
+      mean_sev >= 21 ~ "high"))
+med_sev %>%
+  tabyl(produto, sev_check_class)
+model_mm <- rma.mv(
+   log_sev ,
+   vi_sev,
+   mods = ~ produto * factor(sev_check_class),
+   method = "ML",
+   random = list( ~ produto | factor(ensaio_1)),
+   struct = "HCS",
+   control = list(optimizer = "nlm"),
+   data = med_sev)
+anova(model_mm, btt = 5:6) 
+ summary(model_mm)
+
+table(med_sev$produto, med_sev$sev_check_class)
+
+#openxlsx::write.xlsx(efficacy_index, here("efficacy_class.xlsx"), colNames = TRUE)
+
+```
+
+#organizando a saida do modelo
+
+```{r}
+library(here)
+reg1 = data.frame(model_mm$beta, model_mm$se, model_mm$ci.lb, model_mm$ci.ub) %>%
+  rownames_to_column("trat") %>%
+  separate(trat, into = c("lado1", "lado2"), sep = ":") %>%
+  separate(lado2, into = c("lixo","lado3"),sep = "sev_check_class") %>% 
+  dplyr::select(-lixo) %>%
+  separate(lado1, into = c("lixo","lado1"),sep = "produto" ) %>%
+  dplyr::select(-lixo) %>%
+  filter(lado1 != "NA") %>%
+  mutate(n = seq(1:16))
+
+names(reg1) = c("fungicide", "class", "mean", "se", "ci.lb", "ci.ub", "n")  
+
+reg2 = reg1 %>%
+  filter(n < 9) %>% 
+  mutate(class = rep("High", length(fungicide)))
+
+reg3 = reg1 %>% 
+  filter(n > 8) %>% 
+  mutate(class = rep("Low", length(fungicide)))
+
+reg4 = rbind(reg2,reg3)  
+
+```
+
+#aqui teve que calcular o lower por que o modelo da o lower com base no hight
+
+```{r}
+mean = reg4%>% 
+  group_by(fungicide) %>% 
+  dplyr::select(1:3) %>% 
+  spread(class, mean) %>% 
+  mutate(mean = High + Low) %>% 
+  dplyr::select(1,4)
+
+se = reg4%>% 
+  group_by(fungicide) %>% 
+  dplyr::select(1,2,4) %>% 
+  spread(class, se) %>% 
+  mutate(se = High + Low) %>% 
+  dplyr::select(1,4)
+
+
+lower = reg4%>% 
+  group_by(fungicide) %>% 
+  dplyr::select(1,2,5) %>% 
+  spread(class, ci.lb) %>% 
+  mutate(lower = High + Low) %>%  
+  dplyr::select(1,4)
+
+upper = reg4%>% 
+  group_by(fungicide) %>% 
+  dplyr::select(1,2,6) %>% 
+  spread(class, ci.ub) %>% 
+  mutate(upper = High + Low) %>% 
+  dplyr::select(1,4)
+
+
+
+reg5 = left_join(mean, lower, by= c("fungicide")) %>% 
+  left_join(upper, by = c("fungicide")) %>% 
+  left_join(se, by = c("fungicide")) %>%
+  mutate(class = rep("Low", length("fungicide"))) %>% 
+  dplyr::select("fungicide", "class", "mean", "lower", "upper", "se")
+
+
+High = reg4 %>% 
+  filter(class == "High") %>% 
+  dplyr::select(1:6)
+names(High) = c("fungicide", "class", "mean","se", "lower", "upper") 
+
+
+reg6 = full_join(High,reg5)
+#openxlsx::write.xlsx(reg6, here("sev_baseline.xlsx"), colNames = TRUE)
+ efficacy_index <- data.frame(cbind(
+   (1 - exp(reg6$mean)) * 100,
+   (1 - exp(reg6$lower)) * 100,
+   (1 - exp(reg6$upper)) * 100),
+   (reg6$class),(reg6$fungicide))
+#openxlsx::write.xlsx(efficacy_index, here("efficacy_class.xlsx"), colNames = TRUE)
+
+
+```
+
+Design groups
+
+```{r}
+library(janitor)
+med_sev1 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  summarise(produto = paste(produto, collapse=';'))
+
+med_sev1 %>% 
+  tabyl(produto)
+
+table(med_sev1$produto)
+
+#repete 7 vezes
+```
+
+#D1 #conferido
+
+```{r}
+med_sev <- med_sev %>%
+  group_by(ensaio_1) %>% 
+  mutate(n2 = n()) %>% 
+  filter(n2 != 1)
+
+
+
+design1 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "BELYAN  (Controle Positivo)", "FOX XPRO", "OSKESTRA SC", "PREVINIL", "trat_A20259")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(1, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design1
+```
+
+#D2 #conferido
+
+```{r}
+design2 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "BELYAN  (Controle Positivo)", "FOX XPRO", "OSKESTRA SC", "TRIDIUM", "trat_A20259")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(2, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design2
+
+
+```
+
+#D3 #conferido
+
+```{r}
+design3 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "FOX XPRO", "OSKESTRA SC", "PREVINIL","TRIDIUM", "UNIZEB GOLD (Controle Positivo, multissítio)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(3, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design3
+
+
+```
+
+#D4 #conferido
+
+```{r}
+design4 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "FOX XPRO", "PREVINIL","TRIDIUM", "UNIZEB GOLD (Controle Positivo, multissítio)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(4, length(produto))) %>% 
+  filter(n2 == 6) %>% 
+  filter(n3 == 6)
+design4
+
+```
+
+#D5 conferido
+
+```{r}
+design5 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)","BELYAN  (Controle Positivo)", "OSKESTRA SC", "PREVINIL","TRIDIUM", "UNIZEB GOLD (Controle Positivo, multissítio)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(5, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design5
+
+
+```
+
+#D6 #conferido
+
+```{r}
+design6 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "OSKESTRA SC", "UNIZEB GOLD (Controle Positivo, multissítio)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(6, length(produto))) %>% 
+  filter(n2 == 4) %>% 
+  filter(n3 == 4)
+design6
+```
+
+#D7 #Conferido
+
+```{r}
+design7 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "PREVINIL", "UNIZEB GOLD (Controle Positivo, multissítio)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(7, length(produto))) %>% 
+  filter(n2 == 3) %>% 
+  filter(n3 == 3)
+design7
+```
+
+#D8 #Conferido
+
+```{r}
+design8 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "BELYAN  (Controle Positivo)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(8, length(produto))) %>% 
+  filter(n2 == 2) %>% 
+  filter(n3 == 2)
+design8
+```
+
+#D9 #Conferido
+
+```{r}
+design9 = med_sev %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c('AACHECK', 'ABACUS HC (Controle Positivo)','FOX XPRO', 'OSKESTRA SC','trat_A20259', 'TRIDIUM'))%>%
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(9, length(produto))) %>% 
+  filter(n2 == 6) %>% 
+  filter(n3 == 6)
+design9
+
+```
+
+#juntando os design
+
+```{r}
+sev_design = rbind(design1, design2, design3, design4, design5, design6, design7, design8, design9)
+
+
+sev_design %>% 
+  group_by(ensaio_1, design) %>% 
+  summarize() %>% 
+  tabyl(design)
+```
+
+Inconsistency
+
+```{r}
+mv_sev_design <- rma.mv(log_sev, vi_sev,
+  mods = ~produto * design,
+  random = list(~ 1 | ensaio_1 / design / produto),
+  struct = "HCS",
+  method = "ML",
+  control = list(optimizer = "nlm"),
+  data = sev_design)
+
+mv_sev_design
+anova(mv_sev_design, btt = 11:18)
+
+```
+
+
+
+
+

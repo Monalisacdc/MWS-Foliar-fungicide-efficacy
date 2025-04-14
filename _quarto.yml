@@ -1,0 +1,59 @@
+project:
+  type: website
+  output-dir: docs
+
+execute:
+  cache: true
+  freeze: auto
+  warning: false
+
+website:
+  title: ""
+  
+  navbar:
+
+      
+    left:
+      - text: "MWS Meta-analysis"
+        href: index.qmd
+      - text: "<i class='bi bi-box-arrow-in-right'></i> Data" 
+      
+
+        href: data.qmd
+      - text: "<i class='bi bi-graph-up'></i> Analysis"
+        menu:
+          - text: "MWS Severity"
+            href: sev.qmd
+          - text: "Maize Gain Yield"
+            href: yld.qmd
+          - text: "Economic Analysis"
+            href: economic_analysis.qmd
+          - text: "Boxplot"
+            href: boxplot.qmd
+          - text: "Sev x Yield"
+            href: sev_yld_graph.qmd
+          - text: "Map"
+            href: map.qmd
+            
+    right:
+      - icon: twitter
+        href: https://twitter.com/monalisacdc
+      - icon: github
+        href: https://github.com/Monalisacdc
+      - icon: linkedin
+        href: https://www.linkedin.com/in/monalisa-de-c%C3%B3l-62a6b31b8/
+
+format:
+  html:
+    css: styles.css
+    toc: true  
+    toc_depth: 3  
+    toc_title: "Sumário"  
+    toc_float:  
+      collapsed: no  
+      smooth_scroll: no  
+    lib_dir: site_libs  
+    self_contained: no  
+
+
+editor: visual

@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title></title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">MWS Meta-analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data.html"> 
+<span class="menu-text"><i class="bi bi-box-arrow-in-right"></i> Data</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-i-classbi-bi-graph-upi-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="bi bi-graph-up"></i> Analysis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-i-classbi-bi-graph-upi-analysis">    
+        <li>
+    <a class="dropdown-item" href="./sev.html">
+ <span class="dropdown-text">MWS Severity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yld.html">
+ <span class="dropdown-text">Maize Grain Yield</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economic_analysis.html">
+ <span class="dropdown-text">Economic Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./boxplot.html">
+ <span class="dropdown-text">Boxplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sev_yld_graph.html">
+ <span class="dropdown-text">Sev x Yield</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./map.html">
+ <span class="dropdown-text">Map</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/monalisacdc"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Monalisacdc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/monalisa-de-c%C3%B3l-62a6b31b8/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#meta-analysis-for-the-variable-yield" id="toc-meta-analysis-for-the-variable-yield" class="nav-link active" data-scroll-target="#meta-analysis-for-the-variable-yield">Meta-analysis for the variable yield</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the data</a></li>
+  <li><a href="#anova-for-each-trialstudy" id="toc-anova-for-each-trialstudy" class="nav-link" data-scroll-target="#anova-for-each-trialstudy">ANOVA for Each Trial/Study</a></li>
+  <li><a href="#calculating-the-mean-and-adjusted-variance" id="toc-calculating-the-mean-and-adjusted-variance" class="nav-link" data-scroll-target="#calculating-the-mean-and-adjusted-variance">Calculating the mean and adjusted variance</a></li>
+  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis">Meta-analysis</a>
+  <ul class="collapse">
+  <li><a href="#fitting-model" id="toc-fitting-model" class="nav-link" data-scroll-target="#fitting-model">Fitting model</a></li>
+  <li><a href="#organizing-the-data" id="toc-organizing-the-data" class="nav-link" data-scroll-target="#organizing-the-data">Organizing the data</a></li>
+  <li><a href="#pairwise-comparison" id="toc-pairwise-comparison" class="nav-link" data-scroll-target="#pairwise-comparison">Pairwise comparison</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="meta-analysis-for-the-variable-yield" class="level1">
+<h1>Meta-analysis for the variable yield</h1>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(metafor)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-data">Import the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">=</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1joo0WaR7yNWZavGPbwQMjiFPpWHErtGL/edit?gid=1485993259#gid=1485993259"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dat1<span class="sc">$</span>bloco <span class="ot">=</span> <span class="fu">as.factor</span>(dat1<span class="sc">$</span>bloco)   <span class="co"># Block as a factor  </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dat1<span class="sc">$</span>produto <span class="ot">=</span> <span class="fu">as.factor</span>(dat1<span class="sc">$</span>produto)   <span class="co"># fungicide as a factor  </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dat1<span class="sc">$</span>ensaio_1 <span class="ot">=</span> <span class="fu">as.factor</span>(dat1<span class="sc">$</span>ensaio_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> dat1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mean_prod))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> dat1 <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mean_prod)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">num_produtos =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>total_ensaios <span class="ot">&lt;-</span> prod <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">n_distinct</span>(ensaio_1))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>contagem_por_produto <span class="ot">&lt;-</span> prod <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(produto) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_ensaios =</span> <span class="fu">n_distinct</span>(ensaio_1),  <span class="co"># Count unique trials</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_anos =</span> <span class="fu">n_distinct</span>(ano),         <span class="co"># Count unique years</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">anos =</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(ano)), <span class="at">collapse =</span> <span class="st">", "</span>), <span class="co"># List sorted years</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">ensaios =</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(ensaio_1)), <span class="at">collapse =</span> <span class="st">", "</span>), <span class="co"># List unique trials</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>aacheck<span class="ot">=</span> prod <span class="sc">|&gt;</span>  <span class="fu">filter</span>(produto <span class="sc">==</span> <span class="st">"AACHECK"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aacheck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  municipio         bloco     ensaio_1                           produto   
+ Length:118         1:31   11     : 4   AACHECK                      :118  
+ Class :character   2:31   12     : 4   ABACUS HC (Controle Positivo):  0  
+ Mode  :character   3:31   21     : 4   BELYAN  (Controle Positivo)  :  0  
+                    4:25   22     : 4   FOX XPRO                     :  0  
+                           23     : 4   OSKESTRA SC                  :  0  
+                           24     : 4   PREVINIL                     :  0  
+                           (Other):94   (Other)                      :  0  
+      ano          estado             regiao             mean_sev    
+ Min.   :2016   Length:118         Length:118         Min.   : 0.80  
+ 1st Qu.:2018   Class :character   Class :character   1st Qu.: 6.00  
+ Median :2020   Mode  :character   Mode  :character   Median :19.00  
+ Mean   :2020                                         Mean   :21.47  
+ 3rd Qu.:2020                                         3rd Qu.:30.23  
+ Max.   :2023                                         Max.   :75.00  
+                                                                     
+   mean_prod      num_produtos 
+ Min.   : 3414   Min.   : 8.0  
+ 1st Qu.: 5062   1st Qu.:28.0  
+ Median : 6124   Median :28.0  
+ Mean   : 6536   Mean   :24.2  
+ 3rd Qu.: 7729   3rd Qu.:28.0  
+ Max.   :12361   Max.   :28.0  
+                               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mediana 19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="anova-for-each-trialstudy" class="level2">
+<h2 class="anchored" data-anchor-id="anova-for-each-trialstudy">ANOVA for Each Trial/Study</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ANOVA</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>prod2 <span class="ot">&lt;-</span> prod <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mean_prod <span class="sc">!=</span> <span class="st">"NA"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ensaio_1, produto, bloco, mean_prod) <span class="sc">%&gt;%</span> <span class="co"># Ensure grouping column is selected</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">c</span>(produto, bloco, mean_prod)) <span class="sc">%&gt;%</span> <span class="co"># Nest data by group</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">aov_results =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">tidy</span>(<span class="fu">aov</span>(mean_prod <span class="sc">~</span> produto <span class="sc">+</span> bloco, <span class="at">data =</span> .x)))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(aov_results) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"Residuals"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculating-the-mean-and-adjusted-variance" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-mean-and-adjusted-variance">Calculating the mean and adjusted variance</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First: Merge the Original Spreadsheet (dat1) with the Spreadsheet Containing the ANOVA Results;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>prod3 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(prod, prod2) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(municipio,regiao, ensaio_1, produto, ano) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_prod =</span> <span class="fu">mean</span>(mean_prod),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_V =</span> <span class="fu">mean</span>(meansq),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_sev =</span> <span class="fu">mean</span>(mean_sev),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating adjusted variance of severity</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>prod3<span class="sc">$</span>vi_yld <span class="ot">&lt;-</span> <span class="fu">with</span>(prod3, mean_V<span class="sc">/</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="meta-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="meta-analysis">Meta-analysis</h2>
+<section id="fitting-model" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-model">Fitting model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>net_arm_UN_prod <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  mean_prod,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  vi_yld,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">mods =</span> <span class="sc">~</span> produto,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">method =</span> <span class="st">"ML"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="fu">list</span>( <span class="sc">~</span> produto <span class="sc">|</span> <span class="fu">factor</span>(ensaio_1)),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">struct =</span> <span class="st">"HCS"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">optimizer =</span> <span class="st">"nlm"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> prod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Variance Components in Model:
+
+          sigma2       tau21       tau22       tau23       tau24       tau25 
+included      No         Yes         Yes         Yes         Yes         Yes 
+fixed        ---       FALSE       FALSE       FALSE       FALSE       FALSE 
+initial      --- 290480.0281 290480.0281 290480.0281 290480.0281 290480.0281 
+specified    ---         ---         ---         ---         ---         --- 
+                tau26       tau27       tau28       tau29   rho gamma2 phi 
+included          Yes         Yes         Yes         Yes   Yes     No  No 
+fixed           FALSE       FALSE       FALSE       FALSE FALSE    --- --- 
+initial   290480.0281 290480.0281 290480.0281 290480.0281   0.5    --- --- 
+specified         ---         ---         ---         ---   ---    --- --- 
+
+Iteration 0     ll = -1669.3677   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 1     ll = -1669.3677   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 2     ll = -1669.3677   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 3     ll = -1669.3673   tau2 = 290483.6821  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 4     ll = -1669.3673   tau2 = 290480.0281  290483.6821  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 5     ll = -1669.3674   tau2 = 290480.0281  290480.0281  290483.6821  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 6     ll = -1669.3673   tau2 = 290480.0281  290480.0281  290480.0281  290483.6821  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 7     ll = -1669.3673   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290483.6821  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 8     ll = -1669.3676   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290483.6821  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 9     ll = -1669.3675   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290483.6821  290480.0281  290480.0281  rho = 0.5000  
+Iteration 10    ll = -1669.3676   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290483.6821  290480.0281  rho = 0.5000  
+Iteration 11    ll = -1669.3676   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290483.6821  rho = 0.5000  
+Iteration 12    ll = -1669.3675   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 13    ll = -1669.3677   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 14    ll = -1669.3677   tau2 = 290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  290480.0281  rho = 0.5000  
+Iteration 15    ll =  -Inf   tau2 = 3014356512356146610246.0000  10502428825806919680.0000  10038002650921118.0000  120240161666010202112.0000  96923446079555092480.0000  77490412.6922  19783025232942.1797  128187006193.4250  13933949215.0546  rho = 1.0000  
+Iteration 16    ll = -2243.5029   tau2 = 11607110.3048  6590731.5838  3288284.4648  8410263.5474  8230903.9696  507842.9729  1763737.3853  1065587.3362  853516.7971  rho = 1.0000  
+Iteration 17    ll = -1833.2046   tau2 = 1809583.5577  1366647.7904  967988.2964  1542323.1547  1525918.7603  383232.4166  710679.1256  553500.0174  495804.8305  rho = 1.0000  
+Iteration 18    ll = -1696.5590   tau2 = 605297.6525  540799.5354  470891.0068  567694.1327  565263.0242  324650.7482  415969.4307  376264.4151  360003.0168  rho = 1.0000  
+Iteration 19    ll = -1655.3156   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 20    ll = -1655.3156   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 21    ll = -1655.3159   tau2 = 398482.8311  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 22    ll = -1655.3152   tau2 = 398477.6925  379612.7171  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 23    ll = -1655.3154   tau2 = 398477.6925  379607.8403  357648.7782  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 24    ll = -1655.3152   tau2 = 398477.6925  379607.8403  357644.2048  387629.0467  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 25    ll = -1655.3158   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386913.4329  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 26    ll = -1655.3154   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304732.1294  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 27    ll = -1655.3153   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339052.3630  324714.8483  318596.3817  rho = 0.9919  
+Iteration 28    ll = -1655.3154   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324718.9692  318596.3817  rho = 0.9919  
+Iteration 29    ll = -1655.3147   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318600.4189  rho = 0.9919  
+Iteration 30    ll = -1655.3157   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 31    ll = -1655.3156   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 32    ll = -1655.3156   tau2 = 398477.6925  379607.8403  357644.2048  387624.0588  386908.4549  304728.2815  339048.0456  324714.8483  318596.3817  rho = 0.9919  
+Iteration 33    ll = -1621.0214   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 34    ll = -1621.0214   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 35    ll = -1621.0207   tau2 = 336543.0487  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 36    ll = -1621.0218   tau2 = 336538.7657  468194.5755  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 37    ll = -1621.0214   tau2 = 336538.7657  468188.4625  398199.5995  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 38    ll = -1621.0215   tau2 = 336538.7657  468188.4625  398194.4649  470521.0666  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 39    ll = -1621.0209   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342906.7829  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 40    ll = -1621.0213   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329625.1672  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 41    ll = -1621.0213   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384523.4731  352411.5416  493642.0405  rho = 0.9883  
+Iteration 42    ll = -1621.0213   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352416.0428  493642.0405  rho = 0.9883  
+Iteration 43    ll = -1621.0210   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493648.5120  rho = 0.9883  
+Iteration 44    ll = -1621.0216   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 45    ll = -1621.0214   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 46    ll = -1621.0214   tau2 = 336538.7657  468188.4625  398194.4649  470514.9209  342902.4125  329620.9791  384518.5282  352411.5416  493642.0405  rho = 0.9883  
+Iteration 47    ll = -1555.5223   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 48    ll = -1555.5223   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 49    ll = -1555.5218   tau2 = 423529.0247  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 50    ll = -1555.5220   tau2 = 423523.5374  462445.7953  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 51    ll = -1555.5223   tau2 = 423523.5374  462439.7631  465438.2424  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 52    ll = -1555.5224   tau2 = 423523.5374  462439.7631  465432.1681  551763.8523  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 53    ll = -1555.5218   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414064.2808  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 54    ll = -1555.5222   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394864.9763  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 55    ll = -1555.5224   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468761.6329  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 56    ll = -1555.5222   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420624.8122  1110378.9104  rho = 0.9571  
+Iteration 57    ll = -1555.5224   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110394.3672  rho = 0.9571  
+Iteration 58    ll = -1555.5224   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 59    ll = -1555.5223   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 60    ll = -1555.5223   tau2 = 423523.5374  462439.7631  465432.1681  551756.5575  414058.9254  394859.8880  468755.5119  420619.3654  1110378.9104  rho = 0.9571  
+Iteration 61    ll =  -Inf   tau2 = 939394.4610  901450.6786  750299.7164  833484.2509  933910.5091  668208.8206  750388.2782  734102.5099  6693097.0246  rho =-0.3939  
+Iteration 62    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 63    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 64    ll = -1537.5472   tau2 = 458648.7954  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 65    ll = -1537.5473   tau2 = 458642.8164  494367.0809  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 66    ll = -1537.5475   tau2 = 458642.8164  494360.5993  488202.4148  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 67    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  575000.5399  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 68    ll = -1537.5471   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449150.7345  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 69    ll = -1537.5475   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416193.7517  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 70    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491344.4380  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 71    ll = -1537.5475   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444714.8753  1328883.1546  rho = 0.9326  
+Iteration 72    ll = -1537.5477   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328901.8918  rho = 0.9326  
+Iteration 73    ll = -1537.5477   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 74    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 75    ll = -1537.5476   tau2 = 458642.8164  494360.5993  488196.0202  574992.9143  449144.8888  416188.3667  491337.9990  444709.0917  1328883.1546  rho = 0.9326  
+Iteration 76    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 77    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 78    ll = -1529.2642   tau2 = 664221.5012  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 79    ll = -1529.2642   tau2 = 664212.5965  649486.2441  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 80    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667963.0515  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 81    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788625.9755  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 82    ll = -1529.2642   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674192.0581  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 83    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530336.7930  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 84    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652905.9211  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 85    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607294.9482  2582963.7087  rho = 0.7005  
+Iteration 86    ll = -1529.2644   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2583001.8450  rho = 0.7005  
+Iteration 87    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 88    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 89    ll = -1529.2643   tau2 = 664212.5965  649477.5515  667954.0929  788615.2676  674183.0097  530329.8026  652897.1793  607286.8611  2582963.7087  rho = 0.7005  
+Iteration 90    ll = -1505.7193   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 91    ll = -1505.7193   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 92    ll = -1505.7192   tau2 = 671390.5668  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 93    ll = -1505.7192   tau2 = 671381.5588  688994.8967  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 94    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639798.1838  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 95    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639789.6305  732616.0895  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 96    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677943.8821  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 97    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514996.5095  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 98    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618011.6722  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 99    ll = -1505.7192   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585584.1171  2100216.9532  rho = 0.8715  
+Iteration 100   ll = -1505.7194   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100247.5274  rho = 0.8715  
+Iteration 101   ll = -1505.7193   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 102   ll = -1505.7193   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 103   ll = -1505.7193   tau2 = 671381.5588  688985.6347  639789.6305  732606.1961  677934.7796  514989.7363  618003.4315  585576.3404  2100216.9532  rho = 0.8715  
+Iteration 104   ll = -1497.0682   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 105   ll = -1497.0682   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 106   ll = -1497.0681   tau2 = 789062.5784  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 107   ll = -1497.0681   tau2 = 789051.8641  796927.7345  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 108   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724373.0982  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 109   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724363.3243  815188.5056  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 110   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790144.7448  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 111   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572207.6514  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 112   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695270.0988  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 113   ll = -1497.0681   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669705.4279  2246904.7602  rho = 0.8947  
+Iteration 114   ll = -1497.0683   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246937.6216  rho = 0.8947  
+Iteration 115   ll = -1497.0682   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 116   ll = -1497.0682   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 117   ll = -1497.0682   tau2 = 789051.8641  796916.9055  724363.3243  815177.4100  790134.0147  572200.0655  695260.7461  669696.4442  2246904.7602  rho = 0.8947  
+Iteration 118   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 119   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 120   ll = -1476.1106   tau2 = 1437113.9849  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 121   ll = -1476.1105   tau2 = 1437093.6095  1344884.3034  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 122   ll = -1476.1104   tau2 = 1437093.6095  1344865.3248  1259566.5197  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 123   ll = -1476.1104   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386207.0220  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 124   ll = -1476.1106   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433056.1314  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 125   ll = -1476.1104   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943081.9355  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 126   ll = -1476.1104   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205347.2440  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 127   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204643.6229  3030865.7614  rho = 0.9382  
+Iteration 128   ll = -1476.1106   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030910.9955  rho = 0.9382  
+Iteration 129   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 130   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 131   ll = -1476.1105   tau2 = 1437093.6095  1344865.3248  1259548.8276  1386187.4183  1433035.8176  943068.9617  1205330.3665  1204626.7560  3030865.7614  rho = 0.9382  
+Iteration 132   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 133   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 134   ll = -1469.2347   tau2 = 2066099.1395  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 135   ll = -1469.2345   tau2 = 2066069.0962  1893132.5584  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 136   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853533.7769  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 137   ll = -1469.2345   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045611.6865  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 138   ll = -1469.2347   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056629.4538  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 139   ll = -1469.2345   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403934.7682  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 140   ll = -1469.2345   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1801008.5280  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 141   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793521.2418  3642828.7002  rho = 0.9555  
+Iteration 142   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642883.7375  rho = 0.9555  
+Iteration 143   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 144   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 145   ll = -1469.2346   tau2 = 2066069.0962  1893105.1958  1853507.0258  2045581.9615  2056599.5577  1403914.8960  1800982.5868  1793495.4158  3642828.7002  rho = 0.9555  
+Iteration 146   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 147   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 148   ll = -1466.5575   tau2 = 2717503.4760  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 149   ll = -1466.5573   tau2 = 2717463.2159  2545827.2400  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 150   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535118.9546  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 151   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820864.1498  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 152   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717123.1093  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 153   ll = -1466.5573   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029254.5321  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 154   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498721.0395  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 155   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455140.8856  4212526.4304  rho = 0.9668  
+Iteration 156   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212590.6869  rho = 0.9668  
+Iteration 157   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 158   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 159   ll = -1466.5574   tau2 = 2717463.2159  2545789.6894  2535081.5727  2820822.2531  2717082.8553  2029225.0611  2498684.2305  2455104.7617  4212526.4304  rho = 0.9668  
+Iteration 160   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 161   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 162   ll = -1466.0574   tau2 = 3040950.3601  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 163   ll = -1466.0573   tau2 = 3040904.9661  2942948.7907  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 164   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900910.3440  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 165   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252379.6983  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 166   ll = -1466.0574   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055993.2798  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 167   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449814.4278  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 168   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867252.6704  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 169   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794882.1198  4557037.8785  rho = 0.9709  
+Iteration 170   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557107.7484  rho = 0.9709  
+Iteration 171   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 172   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 173   ll = -1466.0573   tau2 = 3040904.9661  2942904.9561  2900867.1772  3252330.9296  3055947.6462  2449778.3876  2867210.0380  2794840.6349  4557037.8785  rho = 0.9709  
+Iteration 174   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 175   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 176   ll = -1465.9658   tau2 = 3119993.4900  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 177   ll = -1465.9658   tau2 = 3119946.8361  3080271.4162  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 178   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999599.3551  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 179   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377357.3193  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 180   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144925.0857  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 181   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620284.3256  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 182   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959599.5011  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 183   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878076.8933  4727253.9446  rho = 0.9719  
+Iteration 184   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727326.5976  rho = 0.9719  
+Iteration 185   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 186   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 187   ll = -1465.9658   tau2 = 3119946.8361  3080225.3957  2999554.6195  3377306.5493  3144878.0339  2620245.6013  2959555.4017  2878034.0891  4727253.9446  rho = 0.9719  
+Iteration 188   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 189   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 190   ll = -1465.9317   tau2 = 3112147.9661  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 191   ll = -1465.9317   tau2 = 3112101.4373  3103261.7549  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 192   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998161.6838  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 193   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383480.7249  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 194   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141514.8292  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 195   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678587.9379  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 196   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952592.0697  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 197   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870123.7007  4826159.6052  rho = 0.9720  
+Iteration 198   ll = -1465.9316   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826233.8783  rho = 0.9720  
+Iteration 199   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 200   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 201   ll = -1465.9317   tau2 = 3112101.4373  3103215.3679  2998116.9710  3383429.8567  3141467.8318  2678548.2930  2952548.0818  2870081.0227  4826159.6052  rho = 0.9720  
+Iteration 202   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 203   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 204   ll = -1465.9145   tau2 = 3081436.6436  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 205   ll = -1465.9145   tau2 = 3081390.6045  3078641.3361  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 206   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966237.7745  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 207   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350414.4325  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 208   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111087.2528  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 209   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685595.2092  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 210   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918609.7725  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 211   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837570.9507  4896685.7326  rho = 0.9720  
+Iteration 212   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896761.1621  rho = 0.9720  
+Iteration 213   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 214   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 215   ll = -1465.9145   tau2 = 3081390.6045  3078595.3416  2966193.5696  3350364.0943  3111040.7409  2685555.4536  2918566.3246  2837528.7891  4896685.7326  rho = 0.9720  
+Iteration 216   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 217   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 218   ll = -1465.9063   tau2 = 3068076.7291  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 219   ll = -1465.9063   tau2 = 3068030.9029  3055517.7040  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 220   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948275.5356  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 221   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329655.6319  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 222   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095860.3319  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 223   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679958.7058  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 224   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901760.8121  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 225   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821442.8303  4955287.4617  rho = 0.9720  
+Iteration 226   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955363.8528  rho = 0.9720  
+Iteration 227   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 228   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 229   ll = -1465.9063   tau2 = 3068030.9029  3055472.0780  2948231.6163  3329605.6263  3095814.0629  2679919.0393  2901717.6319  2821400.9244  4955287.4617  rho = 0.9720  
+Iteration 230   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 231   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 232   ll = -1465.9013   tau2 = 3079346.8211  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 233   ll = -1465.9013   tau2 = 3079300.8154  3053196.2444  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 234   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954228.3007  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 235   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334711.4618  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 236   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3105015.4786  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 237   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682973.7188  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 238   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909764.3276  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 239   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828987.0703  5024522.6928  rho = 0.9721  
+Iteration 240   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024600.2210  rho = 0.9721  
+Iteration 241   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 242   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 243   ll = -1465.9013   tau2 = 3079300.8154  3053150.6554  2954184.2867  3334661.3752  3104969.0636  2682934.0046  2909721.0202  2828945.0448  5024522.6928  rho = 0.9721  
+Iteration 244   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 245   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 246   ll = -1465.8984   tau2 = 3107074.9043  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 247   ll = -1465.8984   tau2 = 3107028.4564  3072241.7860  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 248   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978130.1371  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 249   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360275.7267  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 250   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131618.7855  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 251   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695828.4533  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 252   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934881.4214  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 253   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853085.7600  5094110.7842  rho = 0.9724  
+Iteration 254   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094189.4562  rho = 0.9724  
+Iteration 255   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 256   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 257   ll = -1465.8984   tau2 = 3107028.4564  3072195.8935  2978085.7431  3360225.2305  3131571.9461  2695788.5359  2934837.7150  2853043.3524  5094110.7842  rho = 0.9724  
+Iteration 258   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 259   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 260   ll = -1465.8973   tau2 = 3130395.1538  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 261   ll = -1465.8973   tau2 = 3130348.3339  3095265.3753  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 262   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000458.3341  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 263   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385106.5393  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 264   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155099.5887  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 265   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707683.1506  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 266   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956967.6044  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 267   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874574.5887  5138465.5297  rho = 0.9726  
+Iteration 268   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138544.9313  rho = 0.9726  
+Iteration 269   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 270   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 271   ll = -1465.8973   tau2 = 3130348.3339  3095219.1158  3000413.5848  3385055.6450  3155052.3746  2707643.0458  2956923.5469  2874531.8401  5138465.5297  rho = 0.9726  
+Iteration 272   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 273   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 274   ll = -1465.8970   tau2 = 3138149.8759  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 275   ll = -1465.8970   tau2 = 3138102.9323  3106490.5336  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 276   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008991.6163  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 277   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3395050.9086  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 278   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163441.6943  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 279   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711162.4321  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 280   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964773.2171  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 281   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882406.3835  5152565.6901  rho = 0.9726  
+Iteration 282   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152645.3237  rho = 0.9726  
+Iteration 283   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 284   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 285   ll = -1465.8970   tau2 = 3138102.9323  3106444.0951  3008946.7312  3394999.8549  3163394.3469  2711122.2723  2964729.0355  2882363.5106  5152565.6901  rho = 0.9726  
+Iteration 286   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 287   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 288   ll = -1465.8969   tau2 = 3137346.3835  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 289   ll = -1465.8969   tau2 = 3137299.4527  3108105.2415  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 290   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009057.1830  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 291   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395446.5122  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 292   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162976.1607  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 293   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709750.5805  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 294   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964472.5282  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 295   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882282.5783  5153412.2182  rho = 0.9727  
+Iteration 296   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153491.8657  rho = 0.9727  
+Iteration 297   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 298   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 299   ll = -1465.8969   tau2 = 3137299.4527  3108058.7772  3009012.2968  3395395.4521  3162928.8208  2709710.4431  2964428.3514  2882239.7073  5153412.2182  rho = 0.9727  
+Iteration 300   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 301   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 302   ll = -1465.8969   tau2 = 3135439.0710  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 303   ll = -1465.8969   tau2 = 3135392.1706  3107000.6156  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 304   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007604.7808  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 305   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393952.5031  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 306   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161156.3363  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 307   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707976.8375  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 308   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962993.1212  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 309   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880881.1619  5152261.7831  rho = 0.9726  
+Iteration 310   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152341.4116  rho = 0.9726  
+Iteration 311   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 312   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 313   ll = -1465.8969   tau2 = 3135392.1706  3106954.1689  3007559.9178  3393901.4670  3161109.0254  2707936.7281  2962948.9679  2880838.3132  5152261.7831  rho = 0.9726  
+Iteration 314   ll = -1465.8969   tau2 = 3134655.6719  3106256.3433  3006951.7597  3393243.7892  3160365.7228  2707267.3040  2962407.3469  2880290.8655  5151862.3115  rho = 0.9726  
+Iteration 315   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 316   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 317   ll = -1465.8969   tau2 = 3135115.3434  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 318   ll = -1465.8969   tau2 = 3135068.4482  3106693.8877  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 319   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007337.4678  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 320   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393663.4245  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 321   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160829.6180  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 322   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707682.5916  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 323   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962755.0555  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 324   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880640.5347  5152086.2061  rho = 0.9726  
+Iteration 325   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152165.8318  rho = 0.9726  
+Iteration 326   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 327   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 328   ll = -1465.8969   tau2 = 3135068.4482  3106647.4459  3007292.6090  3393612.3930  3160782.3124  2707642.4868  2962710.9060  2880597.6897  5152086.2061  rho = 0.9726  
+Iteration 329   ll = -1465.8969   tau2 = 3134579.4939  3106134.9236  3006895.9165  3393181.7033  3160281.2455  2707190.7787  2962384.6447  2880253.2453  5151865.7623  rho = 0.9726  
+Iteration 330   ll = -1465.8969   tau2 = 3134898.8441  3106469.6662  3007155.0089  3393463.0006  3160608.5066  2707485.8018  2962597.7371  2880478.2134  5152009.7434  rho = 0.9726  
+Iteration 331   ll = -1465.8969   tau2 = 3135000.7264  3106576.4595  3007237.6663  3393552.7418  3160712.9128  2707579.9234  2962665.7186  2880549.9838  5152055.6754  rho = 0.9726  
+Iteration 332   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 333   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 334   ll = -1465.8969   tau2 = 3135085.8817  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 335   ll = -1465.8969   tau2 = 3135038.9870  3106663.0058  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 336   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007313.5655  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 337   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393637.4739  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 338   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160799.4265  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 339   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707655.3740  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 340   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962735.3972  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 341   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880619.7807  5152072.9243  rho = 0.9726  
+Iteration 342   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152152.5497  rho = 0.9726  
+Iteration 343   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 344   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 345   ll = -1465.8969   tau2 = 3135038.9870  3106616.5645  3007268.7071  3393586.4428  3160752.1213  2707615.2696  2962691.2480  2880576.9361  5152072.9243  rho = 0.9726  
+Iteration 346   ll = -1465.8969   tau2 = 3134593.9463  3106141.7794  3006913.5685  3393201.8054  3160294.7866  2707202.8560  2962408.5183  2880272.6912  5151885.4907  rho = 0.9726  
+Iteration 347   ll = -1465.8969   tau2 = 3134885.4318  3106452.7458  3007146.1724  3393453.7302  3160594.3241  2707472.9715  2962593.6975  2880471.9618  5152008.2552  rho = 0.9726  
+Iteration 348   ll = -1465.8969   tau2 = 3134977.7631  3106551.2484  3007219.8515  3393533.5292  3160689.2061  2707558.5340  2962652.3539  2880535.0820  5152047.1404  rho = 0.9726  
+Iteration 349   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 350   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 351   ll = -1465.8969   tau2 = 3135059.2777  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 352   ll = -1465.8969   tau2 = 3135012.3834  3106634.6235  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 353   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007292.3360  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 354   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393614.4810  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 355   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160772.0875  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 356   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707630.7202  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 357   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962718.4963  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 358   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880601.5936  5152061.7205  rho = 0.9726  
+Iteration 359   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152141.3457  rho = 0.9726  
+Iteration 360   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 361   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 362   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 363   ll = -1465.8969   tau2 = 3134598.2146  3106145.0120  3006919.0679  3393208.1993  3160298.9248  2707207.0704  2962415.6085  2880278.5175  5151887.9694  rho = 0.9726  
+Iteration 364   ll = -1465.8969   tau2 = 3134873.8007  3106439.8953  3007137.5913  3393444.5829  3160582.2887  2707462.2798  2962587.7735  2880464.9836  5152003.5845  rho = 0.9726  
+Iteration 365   ll = -1465.8969   tau2 = 3134959.1981  3106531.2728  3007205.3057  3393517.8315  3160670.0963  2707541.3632  2962641.1222  2880522.7640  5152039.4093  rho = 0.9726  
+Iteration 366   ll = -1465.8969   tau2 = 3134990.2616  3106564.5117  3007229.9369  3393544.4757  3160702.0366  2707570.1301  2962660.5278  2880543.7817  5152052.4404  rho = 0.9726  
+Iteration 367   ll = -1465.8969   tau2 = 3135002.9247  3106578.0616  3007239.9779  3393555.3373  3160715.0571  2707581.8569  2962668.4385  2880552.3495  5152057.7526  rho = 0.9726  
+Iteration 368   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 369   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 370   ll = -1465.8971   tau2 = 3139705.2889  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 371   ll = -1465.8971   tau2 = 3130326.4923  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 372   ll = -1465.8971   tau2 = 3135012.3834  3111235.7053  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 373   ll = -1465.8971   tau2 = 3135012.3834  3101947.6024  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 374   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3011736.5966  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 375   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3002765.0504  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 376   ll = -1465.8971   tau2 = 3135012.3834  3106588.1826  3007247.4779  3398670.3231  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 377   ll = -1465.8971   tau2 = 3135012.3834  3106588.1826  3007247.4779  3388464.2511  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 378   ll = -1465.8971   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3165458.7636  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 379   ll = -1465.8971   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3155997.8815  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 380   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2711603.9545  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 381   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2703583.2181  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 382   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2967092.4981  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 383   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2958262.7755  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 384   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2884846.3346  5152061.7205  rho = 0.9726  
+Iteration 385   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2876277.5363  5152061.7205  rho = 0.9726  
+Iteration 386   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5160030.3403  rho = 0.9726  
+Iteration 387   ll = -1465.8970   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5144105.4065  rho = 0.9726  
+Iteration 388   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9727  
+Iteration 389   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 390   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 391   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 392   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 393   ll = -1465.8969   tau2 = 3135012.3834  3106588.1826  3007247.4779  3393563.4503  3160724.7827  2707590.6163  2962674.3474  2880558.7493  5152061.7205  rho = 0.9726  
+Iteration 394   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 395   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 396   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 397   ll = -1465.8971   tau2 = 3140329.6354  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 398   ll = -1465.8971   tau2 = 3130948.8492  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 399   ll = -1465.8971   tau2 = 3135635.7343  3111833.7566  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 400   ll = -1465.8971   tau2 = 3135635.7343  3102543.7490  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 401   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3012382.1712  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 402   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3003408.5732  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 403   ll = -1465.8971   tau2 = 3135635.7343  3107185.2809  3007892.0258  3399412.6063  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 404   ll = -1465.8971   tau2 = 3135635.7343  3107185.2809  3007892.0258  3389204.1573  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 405   ll = -1465.8971   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3166084.0807  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 406   ll = -1465.8971   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3156621.2050  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 407   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2712104.0359  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 408   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2704081.7206  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 409   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2967774.6559  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 410   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2958942.7673  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 411   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2885492.1406  5153573.2676  rho = 0.9726  
+Iteration 412   ll = -1465.8970   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2876921.2953  5153573.2676  rho = 0.9726  
+Iteration 413   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5161544.3768  rho = 0.9726  
+Iteration 414   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5145614.4684  rho = 0.9726  
+Iteration 415   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9727  
+Iteration 416   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 417   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 418   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 419   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 420   ll = -1465.8969   tau2 = 3135635.7343  3107185.2809  3007892.0258  3394304.5440  3161349.1022  2708089.9076  2963355.4213  2881203.5309  5153573.2676  rho = 0.9726  
+Iteration 421   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 422   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 423   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 424   ll = -1465.8971   tau2 = 3140477.6713  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 425   ll = -1465.8971   tau2 = 3131096.4134  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 426   ll = -1465.8971   tau2 = 3135783.5341  3111969.9873  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 427   ll = -1465.8971   tau2 = 3135783.5341  3102679.5459  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 428   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3012543.8817  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 429   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3003569.7697  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 430   ll = -1465.8971   tau2 = 3135783.5341  3107321.2945  3008053.4790  3399600.5152  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 431   ll = -1465.8971   tau2 = 3135783.5341  3107321.2945  3008053.4790  3389391.4644  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 432   ll = -1465.8971   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3166231.4477  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 433   ll = -1465.8971   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3156768.1021  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 434   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2712239.7651  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 435   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2704217.0213  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 436   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2967954.2376  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 437   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2959121.7787  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 438   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2885658.1293  5153863.6315  rho = 0.9726  
+Iteration 439   ll = -1465.8970   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2877086.7579  5153863.6315  rho = 0.9726  
+Iteration 440   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5161835.2189  rho = 0.9726  
+Iteration 441   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5145904.3549  rho = 0.9726  
+Iteration 442   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9727  
+Iteration 443   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 444   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 445   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 446   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 447   ll = -1465.8969   tau2 = 3135783.5341  3107321.2945  3008053.4790  3394492.1518  3161496.2341  2708225.4224  2963534.7176  2881369.2564  5153863.6315  rho = 0.9726  
+Iteration 448   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 449   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 450   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 451   ll = -1465.8971   tau2 = 3140479.6125  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 452   ll = -1465.8971   tau2 = 3131098.3484  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 453   ll = -1465.8971   tau2 = 3135785.4722  3111972.1435  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 454   ll = -1465.8971   tau2 = 3135785.4722  3102681.6952  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 455   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3012549.0795  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 456   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3003574.9510  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 457   ll = -1465.8971   tau2 = 3135785.4722  3107323.4472  3008058.6686  3399607.1764  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 458   ll = -1465.8971   tau2 = 3135785.4722  3107323.4472  3008058.6686  3389398.1043  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 459   ll = -1465.8971   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3166233.6879  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 460   ll = -1465.8971   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3156770.3351  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 461   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2712246.2583  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 462   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2704223.4939  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 463   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2967962.1843  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 464   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2959129.7002  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 465   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2885664.7326  5153848.1914  rho = 0.9726  
+Iteration 466   ll = -1465.8970   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2877093.3403  5153848.1914  rho = 0.9726  
+Iteration 467   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5161819.7533  rho = 0.9726  
+Iteration 468   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5145888.9402  rho = 0.9726  
+Iteration 469   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9727  
+Iteration 470   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 471   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 472   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 473   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  
+Iteration 474   ll = -1465.8969   tau2 = 3135785.4722  3107323.4472  3008058.6686  3394498.8023  3161498.4706  2708231.9053  2963542.6517  2881375.8492  5153848.1914  rho = 0.9726  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(net_arm_UN_prod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 189; method: ML)
+
+    logLik    Deviance         AIC         BIC        AICc   
+-1465.8969    515.8930   2969.7939   3031.3871   2974.2909   
+
+Variance Components:
+
+outer factor: factor(ensaio_1) (nlvls = 31)
+inner factor: produto          (nlvls = 9)
+
+                  estim       sqrt  k.lvl  fixed 
+tau^2.1    3135785.4722  1770.8149     31     no 
+tau^2.2    3107323.4472  1762.7602     29     no 
+tau^2.3    3008058.6686  1734.3756     22     no 
+tau^2.4    3394498.8023  1842.4166     23     no 
+tau^2.5    3161498.4706  1778.0603     29     no 
+tau^2.6    2708231.9053  1645.6707      7     no 
+tau^2.7    2963542.6517  1721.4943     20     no 
+tau^2.8    2881375.8492  1697.4616     19     no 
+tau^2.9    5153848.1914  2270.2088      9     no 
+rho              0.9726                       no 
+                                                  level 
+tau^2.1                                         AACHECK 
+tau^2.2                   ABACUS HC (Controle Positivo) 
+tau^2.3                     BELYAN  (Controle Positivo) 
+tau^2.4                                        FOX XPRO 
+tau^2.5                                     OSKESTRA SC 
+tau^2.6                                        PREVINIL 
+tau^2.7                                     trat_A20259 
+tau^2.8                                         TRIDIUM 
+tau^2.9    UNIZEB GOLD (Controle Positivo, multissítio) 
+rho                                                     
+
+Test for Residual Heterogeneity:
+QE(df = 180) = 10958.5055, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:9):
+QM(df = 8) = 164.4560, p-val &lt; .0001
+
+Model Results:
+
+                                                      estimate        se 
+intrcpt                                              6478.9324  321.1645 
+produtoABACUS HC (Controle Positivo)                  730.8315   99.6665 
+produtoBELYAN  (Controle Positivo)                   1071.2983  108.9289 
+produtoFOX XPRO                                      1021.6410  110.1111 
+produtoOSKESTRA SC                                    934.1849   99.9557 
+produtoPREVINIL                                       694.4442  159.9600 
+produtotrat_A20259                                   1080.6851  113.7802 
+produtoTRIDIUM                                        855.5617  112.2920 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)   926.6813  196.8640 
+                                                        zval    pval      ci.lb 
+intrcpt                                              20.1732  &lt;.0001  5849.4615 
+produtoABACUS HC (Controle Positivo)                  7.3328  &lt;.0001   535.4888 
+produtoBELYAN  (Controle Positivo)                    9.8348  &lt;.0001   857.8016 
+produtoFOX XPRO                                       9.2783  &lt;.0001   805.8272 
+produtoOSKESTRA SC                                    9.3460  &lt;.0001   738.2753 
+produtoPREVINIL                                       4.3414  &lt;.0001   380.9285 
+produtotrat_A20259                                    9.4980  &lt;.0001   857.6800 
+produtoTRIDIUM                                        7.6191  &lt;.0001   635.4734 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)   4.7072  &lt;.0001   540.8351 
+                                                         ci.ub      
+intrcpt                                              7108.4033  *** 
+produtoABACUS HC (Controle Positivo)                  926.1742  *** 
+produtoBELYAN  (Controle Positivo)                   1284.7950  *** 
+produtoFOX XPRO                                      1237.4548  *** 
+produtoOSKESTRA SC                                   1130.0944  *** 
+produtoPREVINIL                                      1007.9600  *** 
+produtotrat_A20259                                   1303.6901  *** 
+produtoTRIDIUM                                       1075.6501  *** 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)  1312.5276  *** 
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="organizing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="organizing-the-data">Organizing the data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yield_res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(net_arm_UN_prod<span class="sc">$</span>b, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                              net_arm_UN_prod<span class="sc">$</span>ci.lb,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                              net_arm_UN_prod<span class="sc">$</span>ci.ub,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                               net_arm_UN_prod<span class="sc">$</span>se)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fungicide =</span> <span class="fu">c</span>(<span class="st">"check"</span>, <span class="st">"ABACUSHC"</span>, <span class="st">"BAS75302F"</span>, <span class="st">"FOX XPRO"</span>, <span class="st">"OSKESTRASC"</span>, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"PREVINIL"</span>, <span class="st">"A20259"</span>, <span class="st">"TRIDIUM"</span>, <span class="st">"UNIZEBGOLD"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fungicide <span class="sc">!=</span> <span class="st">"check"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(yield_res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"yld"</span>, <span class="st">"yld_lower"</span>, <span class="st">"yld_upper"</span>, <span class="st">"fungicide"</span>, <span class="st">"se"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>yield_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                          yld yld_lower
+produtoABACUS HC (Controle Positivo)                 730.8315  535.4888
+produtoBELYAN  (Controle Positivo)                  1071.2983  857.8016
+produtoFOX XPRO                                     1021.6410  805.8272
+produtoOSKESTRA SC                                   934.1849  738.2753
+produtoPREVINIL                                      694.4442  380.9285
+produtotrat_A20259                                  1080.6851  857.6800
+produtoTRIDIUM                                       855.5617  635.4734
+produtoUNIZEB GOLD (Controle Positivo, multissítio)  926.6813  540.8351
+                                                    yld_upper fungicide
+produtoABACUS HC (Controle Positivo)                 926.1742  99.66649
+produtoBELYAN  (Controle Positivo)                  1284.7950 108.92887
+produtoFOX XPRO                                     1237.4548 110.11110
+produtoOSKESTRA SC                                  1130.0944  99.95567
+produtoPREVINIL                                     1007.9600 159.95995
+produtotrat_A20259                                  1303.6901 113.78018
+produtoTRIDIUM                                      1075.6501 112.29204
+produtoUNIZEB GOLD (Controle Positivo, multissítio) 1312.5276 196.86397
+                                                            se
+produtoABACUS HC (Controle Positivo)                  ABACUSHC
+produtoBELYAN  (Controle Positivo)                   BAS75302F
+produtoFOX XPRO                                       FOX XPRO
+produtoOSKESTRA SC                                  OSKESTRASC
+produtoPREVINIL                                       PREVINIL
+produtotrat_A20259                                      A20259
+produtoTRIDIUM                                         TRIDIUM
+produtoUNIZEB GOLD (Controle Positivo, multissítio) UNIZEBGOLD</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(yield_res, "yield_res.xlsx")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pairwise-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="pairwise-comparison">Pairwise comparison</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>net_arm_UN_comp <span class="ot">&lt;-</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(<span class="fu">glht</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> net_arm_UN_prod,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">linfct =</span> <span class="fu">cbind</span>(<span class="fu">contrMat</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">9</span>), <span class="at">type =</span> <span class="st">"Tukey"</span>))))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>net_arm_UN_comp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Fit: rma.mv(yi = mean_prod, V = vi_yld, mods = ~produto, random = list(~produto | 
+    factor(ensaio_1)), struct = "HCS", data = prod3, method = "ML", 
+    control = list(optimizer = "nlm", verbose = TRUE))
+
+Linear Hypotheses:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+2 - 1 == 0 -5748.101    351.281 -16.363    &lt;0.01 ***
+3 - 1 == 0 -5407.634    358.357 -15.090    &lt;0.01 ***
+4 - 1 == 0 -5457.291    341.664 -15.973    &lt;0.01 ***
+5 - 1 == 0 -5544.748    348.936 -15.890    &lt;0.01 ***
+6 - 1 == 0 -5784.488    389.854 -14.838    &lt;0.01 ***
+7 - 1 == 0 -5398.247    362.018 -14.912    &lt;0.01 ***
+8 - 1 == 0 -5623.371    365.090 -15.403    &lt;0.01 ***
+9 - 1 == 0 -5552.251    309.386 -17.946    &lt;0.01 ***
+3 - 2 == 0   340.467    112.561   3.025   0.0523 .  
+4 - 2 == 0   290.809    111.161   2.616   0.1554    
+5 - 2 == 0   203.353    100.850   2.016   0.4909    
+6 - 2 == 0   -36.387    160.349  -0.227   1.0000    
+7 - 2 == 0   349.854    114.702   3.050   0.0486 *  
+8 - 2 == 0   124.730    113.094   1.103   0.9678    
+9 - 2 == 0   195.850    197.393   0.992   0.9833    
+4 - 3 == 0   -49.657    119.675  -0.415   1.0000    
+5 - 3 == 0  -137.113    112.976  -1.214   0.9438    
+6 - 3 == 0  -376.854    168.306  -2.239   0.3426    
+7 - 3 == 0     9.387    120.307   0.078   1.0000    
+8 - 3 == 0  -215.737    120.754  -1.787   0.6542    
+9 - 3 == 0  -144.617    213.538  -0.677   0.9988    
+5 - 4 == 0   -87.456    111.098  -0.787   0.9964    
+6 - 4 == 0  -327.197    167.305  -1.956   0.5338    
+7 - 4 == 0    59.044    121.687   0.485   0.9999    
+8 - 4 == 0  -166.079    121.038  -1.372   0.8910    
+9 - 4 == 0   -94.960    202.032  -0.470   0.9999    
+6 - 5 == 0  -239.741    160.896  -1.490   0.8370    
+7 - 5 == 0   146.500    115.146   1.272   0.9269    
+8 - 5 == 0   -78.623    113.647  -0.692   0.9986    
+9 - 5 == 0    -7.504    196.314  -0.038   1.0000    
+7 - 6 == 0   386.241    169.612   2.277   0.3194    
+8 - 6 == 0   161.117    167.497   0.962   0.9863    
+9 - 6 == 0   232.237    240.048   0.967   0.9858    
+8 - 7 == 0  -225.123    122.456  -1.838   0.6183    
+9 - 7 == 0  -154.004    215.727  -0.714   0.9982    
+9 - 8 == 0    71.120    213.360   0.333   1.0000    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net_arm_UN_comp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="yld_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mv_yld_means <span class="ot">&lt;-</span> <span class="fu">emmprep</span>(net_arm_UN_prod)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> mv_yld_emmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mv_yld_means, <span class="sc">~</span> produto)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">pwpm</span>(mv_yld_emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              AACHECK
+AACHECK                                        [6479]
+ABACUS HC (Controle Positivo)                 -730.83
+BELYAN  (Controle Positivo)                  -1071.30
+FOX XPRO                                     -1021.64
+OSKESTRA SC                                   -934.18
+PREVINIL                                      -694.44
+trat_A20259                                  -1080.69
+TRIDIUM                                       -855.56
+UNIZEB GOLD (Controle Positivo, multissítio)  -926.68
+                                             ABACUS HC (Controle Positivo)
+AACHECK                                                             &lt;.0001
+ABACUS HC (Controle Positivo)                                       [7210]
+BELYAN  (Controle Positivo)                                        -340.47
+FOX XPRO                                                           -290.81
+OSKESTRA SC                                                        -203.35
+PREVINIL                                                             36.39
+trat_A20259                                                        -349.85
+TRIDIUM                                                            -124.73
+UNIZEB GOLD (Controle Positivo, multissítio)                       -195.85
+                                             BELYAN  (Controle Positivo)
+AACHECK                                                           &lt;.0001
+ABACUS HC (Controle Positivo)                                     0.0626
+BELYAN  (Controle Positivo)                                       [7550]
+FOX XPRO                                                           49.66
+OSKESTRA SC                                                       137.11
+PREVINIL                                                          376.85
+trat_A20259                                                        -9.39
+TRIDIUM                                                           215.74
+UNIZEB GOLD (Controle Positivo, multissítio)                      144.62
+                                             FOX XPRO OSKESTRA SC PREVINIL
+AACHECK                                        &lt;.0001      &lt;.0001   0.0005
+ABACUS HC (Controle Positivo)                  0.1797      0.5317   1.0000
+BELYAN  (Controle Positivo)                    1.0000      0.9538   0.3801
+FOX XPRO                                       [7501]      0.9972   0.5746
+OSKESTRA SC                                     87.46      [7413]   0.8606
+PREVINIL                                       327.20      239.74   [7173]
+trat_A20259                                    -59.04     -146.50  -386.24
+TRIDIUM                                        166.08       78.62  -161.12
+UNIZEB GOLD (Controle Positivo, multissítio)    94.96        7.50  -232.24
+                                             trat_A20259  TRIDIUM
+AACHECK                                           &lt;.0001   &lt;.0001
+ABACUS HC (Controle Positivo)                     0.0582   0.9740
+BELYAN  (Controle Positivo)                       1.0000   0.6913
+FOX XPRO                                          0.9999   0.9085
+OSKESTRA SC                                       0.9394   0.9989
+PREVINIL                                          0.3560   0.9891
+trat_A20259                                       [7560]   0.6564
+TRIDIUM                                           225.12   [7334]
+UNIZEB GOLD (Controle Positivo, multissítio)      154.00   -71.12
+                                             UNIZEB GOLD (Controle Positivo, multissítio)
+AACHECK                                                                            &lt;.0001
+ABACUS HC (Controle Positivo)                                                      0.9867
+BELYAN  (Controle Positivo)                                                        0.9991
+FOX XPRO                                                                           0.9999
+OSKESTRA SC                                                                        1.0000
+PREVINIL                                                                           0.9887
+trat_A20259                                                                        0.9986
+TRIDIUM                                                                            1.0000
+UNIZEB GOLD (Controle Positivo, multissítio)                                       [7406]
+
+Row and column labels: produto
+Upper triangle: P values   adjust = "tukey"
+Diagonal: [Estimates] (emmean) 
+Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>efficacy_res <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1sXr3kLjpKCZA-WUqqXrerkMBa1D61bwT/edit?gid=947435541#gid=947435541"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>yield_res <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1WKDA30xXJHkD57osKPp6ylRQPUobc0cS/edit?gid=1424387508#gid=1424387508"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>sev_yld <span class="ot">=</span> <span class="fu">full_join</span>(efficacy_res, yield_res)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(sev_yld, "sev_yld.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Disease pressure</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(prod3<span class="sc">$</span>mean_sev) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.150   1.150   5.333   8.875  12.250  64.500 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>prod3 <span class="ot">&lt;-</span> prod3 <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sev_check_class =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      mean_sev <span class="sc">&lt;</span> <span class="dv">19</span> <span class="sc">~</span> <span class="st">"Low"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      mean_sev <span class="sc">&gt;=</span> <span class="dv">19</span> <span class="sc">~</span> <span class="st">"High"</span>))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>prod3 <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(produto, sev_check_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                      produto High Low
+                                      AACHECK   16  15
+                ABACUS HC (Controle Positivo)    3  26
+                  BELYAN  (Controle Positivo)    0  22
+                                     FOX XPRO    1  22
+                                  OSKESTRA SC    1  28
+                                     PREVINIL    1   6
+                                  trat_A20259    0  20
+                                      TRIDIUM    0  19
+ UNIZEB GOLD (Controle Positivo, multissítio)    3   6</code></pre>
+</div>
+</div>
+<p>##Meta-analysis</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mv_yld_bas <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  mean_prod,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  vi_yld,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">mods =</span> <span class="sc">~</span> produto <span class="sc">*</span> <span class="fu">as.factor</span>(sev_check_class),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">method =</span> <span class="st">"ML"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="fu">list</span>( <span class="sc">~</span> produto <span class="sc">|</span> <span class="fu">factor</span>(ensaio_1)),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">struct =</span> <span class="st">"CS"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">optimizer =</span> <span class="st">"nlm"</span>),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> prod3)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(mv_yld_bas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 189; method: ML)
+
+    logLik    Deviance         AIC         BIC        AICc   
+-1455.6135    495.3261   2945.2269   3000.3366   2948.8059   
+
+Variance Components:
+
+outer factor: factor(ensaio_1) (nlvls = 31)
+inner factor: produto          (nlvls = 9)
+
+                  estim       sqrt  fixed 
+tau^2      2986820.7303  1728.2421     no 
+rho              0.9758                no 
+
+Test for Residual Heterogeneity:
+QE(df = 174) = 10418.3077, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:15):
+QM(df = 14) = 208.0571, p-val &lt; .0001
+
+Model Results:
+
+                                                                                    estimate 
+intrcpt                                                                            6159.8377 
+produtoABACUS HC (Controle Positivo)                                                791.7609 
+produtoBELYAN  (Controle Positivo)                                                  694.2175 
+produtoFOX XPRO                                                                     455.5239 
+produtoOSKESTRA SC                                                                  572.0239 
+produtoPREVINIL                                                                     721.0239 
+produtotrat_A20259                                                                  719.8024 
+produtoTRIDIUM                                                                      471.8305 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                 460.5998 
+as.factor(sev_check_class)Low                                                       708.8790 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                 -411.8255 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                       250.3905 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                     10.6437 
+produtoPREVINIL:as.factor(sev_check_class)Low                                      -389.6027 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low  -120.1171 
+                                                                                         se 
+intrcpt                                                                            320.4107 
+produtoABACUS HC (Controle Positivo)                                               241.0311 
+produtoBELYAN  (Controle Positivo)                                                 131.5896 
+produtoFOX XPRO                                                                    378.5255 
+produtoOSKESTRA SC                                                                 378.5255 
+produtoPREVINIL                                                                    378.5255 
+produtotrat_A20259                                                                 132.9918 
+produtoTRIDIUM                                                                     133.5252 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                262.5416 
+as.factor(sev_check_class)Low                                                      146.4907 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                 272.8249 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                      400.4628 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                   398.1262 
+produtoPREVINIL:as.factor(sev_check_class)Low                                      422.5479 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low  320.8762 
+                                                                                      zval 
+intrcpt                                                                            19.2248 
+produtoABACUS HC (Controle Positivo)                                                3.2849 
+produtoBELYAN  (Controle Positivo)                                                  5.2756 
+produtoFOX XPRO                                                                     1.2034 
+produtoOSKESTRA SC                                                                  1.5112 
+produtoPREVINIL                                                                     1.9048 
+produtotrat_A20259                                                                  5.4124 
+produtoTRIDIUM                                                                      3.5336 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                 1.7544 
+as.factor(sev_check_class)Low                                                       4.8391 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                 -1.5095 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                       0.6253 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                    0.0267 
+produtoPREVINIL:as.factor(sev_check_class)Low                                      -0.9220 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low  -0.3743 
+                                                                                     pval 
+intrcpt                                                                            &lt;.0001 
+produtoABACUS HC (Controle Positivo)                                               0.0010 
+produtoBELYAN  (Controle Positivo)                                                 &lt;.0001 
+produtoFOX XPRO                                                                    0.2288 
+produtoOSKESTRA SC                                                                 0.1307 
+produtoPREVINIL                                                                    0.0568 
+produtotrat_A20259                                                                 &lt;.0001 
+produtoTRIDIUM                                                                     0.0004 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                0.0794 
+as.factor(sev_check_class)Low                                                      &lt;.0001 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                 0.1312 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                      0.5318 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                   0.9787 
+produtoPREVINIL:as.factor(sev_check_class)Low                                      0.3565 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low  0.7082 
+                                                                                        ci.lb 
+intrcpt                                                                             5531.8443 
+produtoABACUS HC (Controle Positivo)                                                 319.3486 
+produtoBELYAN  (Controle Positivo)                                                   436.3065 
+produtoFOX XPRO                                                                     -286.3724 
+produtoOSKESTRA SC                                                                  -169.8724 
+produtoPREVINIL                                                                      -20.8724 
+produtotrat_A20259                                                                   459.1432 
+produtoTRIDIUM                                                                       210.1259 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                  -53.9723 
+as.factor(sev_check_class)Low                                                        421.7626 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                  -946.5525 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                       -534.5022 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                    -769.6693 
+produtoPREVINIL:as.factor(sev_check_class)Low                                      -1217.7814 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low   -749.0230 
+                                                                                       ci.ub 
+intrcpt                                                                            6787.8312 
+produtoABACUS HC (Controle Positivo)                                               1264.1732 
+produtoBELYAN  (Controle Positivo)                                                  952.1284 
+produtoFOX XPRO                                                                    1197.4203 
+produtoOSKESTRA SC                                                                 1313.9203 
+produtoPREVINIL                                                                    1462.9203 
+produtotrat_A20259                                                                  980.4616 
+produtoTRIDIUM                                                                      733.5351 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                 975.1719 
+as.factor(sev_check_class)Low                                                       995.9954 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                  122.9016 
+produtoFOX XPRO:as.factor(sev_check_class)Low                                      1035.2832 
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                    790.9567 
+produtoPREVINIL:as.factor(sev_check_class)Low                                       438.5759 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low   508.7887 
+                                                                                       
+intrcpt                                                                            *** 
+produtoABACUS HC (Controle Positivo)                                                ** 
+produtoBELYAN  (Controle Positivo)                                                 *** 
+produtoFOX XPRO                                                                        
+produtoOSKESTRA SC                                                                     
+produtoPREVINIL                                                                      . 
+produtotrat_A20259                                                                 *** 
+produtoTRIDIUM                                                                     *** 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)                                  . 
+as.factor(sev_check_class)Low                                                      *** 
+produtoABACUS HC (Controle Positivo):as.factor(sev_check_class)Low                     
+produtoFOX XPRO:as.factor(sev_check_class)Low                                          
+produtoOSKESTRA SC:as.factor(sev_check_class)Low                                       
+produtoPREVINIL:as.factor(sev_check_class)Low                                          
+produtoUNIZEB GOLD (Controle Positivo, multissítio):as.factor(sev_check_class)Low      
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">anova</span>(mv_yld_bas, <span class="at">btt =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Test of Moderators (coefficients 11:15):
+QM(df = 5) = 4.2886, p-val = 0.5087</code></pre>
+</div>
+</div>
+<p>Design groups</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>prod31 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">produto =</span> <span class="fu">paste</span>(produto, <span class="at">collapse=</span><span class="st">';'</span>)) </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>prod31 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(produto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                  produto
+              AACHECK;ABACUS HC (Controle Positivo);BELYAN  (Controle Positivo);FOX XPRO;OSKESTRA SC;PREVINIL;trat_A20259
+               AACHECK;ABACUS HC (Controle Positivo);BELYAN  (Controle Positivo);FOX XPRO;OSKESTRA SC;trat_A20259;TRIDIUM
+ AACHECK;ABACUS HC (Controle Positivo);FOX XPRO;OSKESTRA SC;PREVINIL;TRIDIUM;UNIZEB GOLD (Controle Positivo, multissítio)
+                           AACHECK;ABACUS HC (Controle Positivo);OSKESTRA SC;UNIZEB GOLD (Controle Positivo, multissítio)
+                                                                                      AACHECK;BELYAN  (Controle Positivo)
+  n    percent
+  4 0.12903226
+ 16 0.51612903
+  3 0.09677419
+  6 0.19354839
+  2 0.06451613</code></pre>
+</div>
+</div>
+<p>#d1</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>prod3 <span class="ot">&lt;-</span> prod3 <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n2 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">!=</span> <span class="dv">1</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>design1 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(produto  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AACHECK"</span>, <span class="st">"ABACUS HC (Controle Positivo)"</span>, <span class="st">"BELYAN  (Controle Positivo)"</span>, <span class="st">"FOX XPRO"</span>, <span class="st">"OSKESTRA SC"</span>, <span class="st">"PREVINIL"</span>, <span class="st">"trat_A20259"</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n3 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">design =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(produto))) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n3 <span class="sc">==</span> <span class="dv">7</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>design1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 14
+# Groups:   ensaio_1 [4]
+   municipio  regiao ensaio_1 produto        ano mean_prod mean_V mean_sev     n
+   &lt;chr&gt;      &lt;chr&gt;  &lt;fct&gt;    &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+ 1 Cafelândia Sul    22       AACHECK       2018     8442. 2.67e5    21.6      4
+ 2 Cafelândia Sul    22       ABACUS HC (…  2018     8700. 2.67e5    10.8      4
+ 3 Cafelândia Sul    22       BELYAN  (Co…  2018     9693. 2.67e5     5.72     4
+ 4 Cafelândia Sul    22       FOX XPRO      2018     9128. 2.67e5     9.5      4
+ 5 Cafelândia Sul    22       OSKESTRA SC   2018     8799. 2.67e5     8.75     4
+ 6 Cafelândia Sul    22       PREVINIL      2018     9136. 2.67e5     9.02     4
+ 7 Cafelândia Sul    22       trat_A20259   2018     9166. 2.67e5     8.1      4
+ 8 Cafelândia Sul    23       AACHECK       2018     6129. 1.46e5     5.55     4
+ 9 Cafelândia Sul    23       ABACUS HC (…  2018     6697. 1.46e5     1.52     4
+10 Cafelândia Sul    23       BELYAN  (Co…  2018     6443. 1.46e5     0.6      4
+# ℹ 18 more rows
+# ℹ 5 more variables: vi_yld &lt;dbl&gt;, sev_check_class &lt;chr&gt;, n2 &lt;int&gt;, n3 &lt;int&gt;,
+#   design &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>#D2</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(produto  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AACHECK"</span>, <span class="st">"ABACUS HC (Controle Positivo)"</span>, <span class="st">"BELYAN  (Controle Positivo)"</span>, <span class="st">"FOX XPRO"</span>, <span class="st">"OSKESTRA SC"</span>, <span class="st">"TRIDIUM"</span>, <span class="st">"trat_A20259"</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n3 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">design =</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="fu">length</span>(produto))) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n3 <span class="sc">==</span> <span class="dv">7</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>design2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 112 × 14
+# Groups:   ensaio_1 [16]
+   municipio regiao       ensaio_1 produto   ano mean_prod mean_V mean_sev     n
+   &lt;chr&gt;     &lt;chr&gt;        &lt;fct&gt;    &lt;fct&gt;   &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+ 1 Anápolis  Centro-Oeste 48       AACHECK  2020     6136. 1.62e5   33.2       4
+ 2 Anápolis  Centro-Oeste 48       ABACUS…  2020     7824  1.62e5   12.2       4
+ 3 Anápolis  Centro-Oeste 48       BELYAN…  2020     7844. 1.62e5   12         4
+ 4 Anápolis  Centro-Oeste 48       FOX XP…  2020     8050  1.62e5   11.2       4
+ 5 Anápolis  Centro-Oeste 48       OSKEST…  2020     8074  1.62e5   11         4
+ 6 Anápolis  Centro-Oeste 48       trat_A…  2020     8020. 1.62e5   11.8       4
+ 7 Anápolis  Centro-Oeste 48       TRIDIUM  2020     7408  1.62e5   14         4
+ 8 Arapongas Sul          27       AACHECK  2019     5959. 2.84e5    4.85      4
+ 9 Arapongas Sul          27       ABACUS…  2019     6633. 2.84e5    0.875     4
+10 Arapongas Sul          27       BELYAN…  2019     7048. 2.84e5    0.35      4
+# ℹ 102 more rows
+# ℹ 5 more variables: vi_yld &lt;dbl&gt;, sev_check_class &lt;chr&gt;, n2 &lt;int&gt;, n3 &lt;int&gt;,
+#   design &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>#D3</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>design3 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(produto  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AACHECK"</span>, <span class="st">"ABACUS HC (Controle Positivo)"</span>,  <span class="st">"FOX XPRO"</span>, <span class="st">"OSKESTRA SC"</span>, <span class="st">"PREVINIL"</span>, <span class="st">"TRIDIUM"</span>, <span class="st">"UNIZEB GOLD (Controle Positivo, multissítio)"</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n3 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">design =</span> <span class="fu">rep</span>(<span class="dv">3</span>, <span class="fu">length</span>(produto))) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n3 <span class="sc">==</span> <span class="dv">7</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>design3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 14
+# Groups:   ensaio_1 [3]
+   municipio       regiao ensaio_1 produto   ano mean_prod mean_V mean_sev     n
+   &lt;chr&gt;           &lt;chr&gt;  &lt;fct&gt;    &lt;fct&gt;   &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+ 1 Capão Bonito    Sudes… 67       AACHECK  2023     5360. 2.09e5    12.0      4
+ 2 Capão Bonito    Sudes… 67       ABACUS…  2023     6330. 2.09e5     7.45     4
+ 3 Capão Bonito    Sudes… 67       FOX XP…  2023     7082. 2.09e5     4.65     4
+ 4 Capão Bonito    Sudes… 67       OSKEST…  2023     6442. 2.09e5     4.65     4
+ 5 Capão Bonito    Sudes… 67       PREVIN…  2023     6384. 2.09e5     5.1      4
+ 6 Capão Bonito    Sudes… 67       TRIDIUM  2023     6477. 2.09e5     6.2      4
+ 7 Capão Bonito    Sudes… 67       UNIZEB…  2023     6647. 2.09e5     7.4      4
+ 8 Patrocínio Pau… Sudes… 68       AACHECK  2023     5490  2.45e4    29.3      4
+ 9 Patrocínio Pau… Sudes… 68       ABACUS…  2023     6368. 2.45e4    18.5      4
+10 Patrocínio Pau… Sudes… 68       FOX XP…  2023     7256. 2.45e4    14.4      4
+# ℹ 11 more rows
+# ℹ 5 more variables: vi_yld &lt;dbl&gt;, sev_check_class &lt;chr&gt;, n2 &lt;int&gt;, n3 &lt;int&gt;,
+#   design &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>#D4</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>design4 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(produto  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AACHECK"</span>, <span class="st">"ABACUS HC (Controle Positivo)"</span>, <span class="st">"OSKESTRA SC"</span>,  <span class="st">"UNIZEB GOLD (Controle Positivo, multissítio)"</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n3 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">design =</span> <span class="fu">rep</span>(<span class="dv">4</span>, <span class="fu">length</span>(produto))) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n3 <span class="sc">==</span> <span class="dv">4</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>design4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 14
+# Groups:   ensaio_1 [6]
+   municipio    regiao ensaio_1 produto      ano mean_prod mean_V mean_sev     n
+   &lt;chr&gt;        &lt;chr&gt;  &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+ 1 Campo Mourão Sul    82       AACHECK     2017     5701. 2.11e5     30       3
+ 2 Campo Mourão Sul    82       ABACUS HC…  2017     7053. 2.11e5     20       3
+ 3 Campo Mourão Sul    82       OSKESTRA …  2017     8018. 2.11e5     17.7     3
+ 4 Campo Mourão Sul    82       UNIZEB GO…  2017     6692. 2.11e5     26.7     3
+ 5 Campo Mourão Sul    83       AACHECK     2017     4948. 7.00e5     30.3     3
+ 6 Campo Mourão Sul    83       ABACUS HC…  2017     5774. 7.00e5     10       3
+ 7 Campo Mourão Sul    83       OSKESTRA …  2017     4872. 7.00e5      8       3
+ 8 Campo Mourão Sul    83       UNIZEB GO…  2017     4400. 7.00e5     19       3
+ 9 Campo Mourão Sul    86       AACHECK     2016     6037. 1.22e5     25       3
+10 Campo Mourão Sul    86       ABACUS HC…  2016     6612. 1.22e5      4       3
+# ℹ 14 more rows
+# ℹ 5 more variables: vi_yld &lt;dbl&gt;, sev_check_class &lt;chr&gt;, n2 &lt;int&gt;, n3 &lt;int&gt;,
+#   design &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>#D5</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>design5 <span class="ot">=</span> prod3 <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(produto  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AACHECK"</span>, <span class="st">"BELYAN  (Controle Positivo)"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n3 =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">design =</span> <span class="fu">rep</span>(<span class="dv">5</span>, <span class="fu">length</span>(produto))) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n2 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n3 <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>design4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 14
+# Groups:   ensaio_1 [6]
+   municipio    regiao ensaio_1 produto      ano mean_prod mean_V mean_sev     n
+   &lt;chr&gt;        &lt;chr&gt;  &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+ 1 Campo Mourão Sul    82       AACHECK     2017     5701. 2.11e5     30       3
+ 2 Campo Mourão Sul    82       ABACUS HC…  2017     7053. 2.11e5     20       3
+ 3 Campo Mourão Sul    82       OSKESTRA …  2017     8018. 2.11e5     17.7     3
+ 4 Campo Mourão Sul    82       UNIZEB GO…  2017     6692. 2.11e5     26.7     3
+ 5 Campo Mourão Sul    83       AACHECK     2017     4948. 7.00e5     30.3     3
+ 6 Campo Mourão Sul    83       ABACUS HC…  2017     5774. 7.00e5     10       3
+ 7 Campo Mourão Sul    83       OSKESTRA …  2017     4872. 7.00e5      8       3
+ 8 Campo Mourão Sul    83       UNIZEB GO…  2017     4400. 7.00e5     19       3
+ 9 Campo Mourão Sul    86       AACHECK     2016     6037. 1.22e5     25       3
+10 Campo Mourão Sul    86       ABACUS HC…  2016     6612. 1.22e5      4       3
+# ℹ 14 more rows
+# ℹ 5 more variables: vi_yld &lt;dbl&gt;, sev_check_class &lt;chr&gt;, n2 &lt;int&gt;, n3 &lt;int&gt;,
+#   design &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>#joining the designers</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>yld_design <span class="ot">=</span> <span class="fu">rbind</span>(design1, design2, design3, design4, design5)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>yld_design <span class="sc">%&gt;%</span> </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ensaio_1,design) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(design)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> design  n    percent
+      1  4 0.12903226
+      2 16 0.51612903
+      3  3 0.09677419
+      4  6 0.19354839
+      5  2 0.06451613</code></pre>
+</div>
+</div>
+<p>Inconsistency</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mv_yld_design <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(mean_prod,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  vi_yld,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mods =</span> <span class="sc">~</span> produto <span class="sc">*</span> design,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> ensaio_1 <span class="sc">/</span> design <span class="sc">/</span> produto),</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">struct =</span> <span class="st">"UN"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"ML"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">optimizer =</span> <span class="st">"nlm"</span>),</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> yld_design)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>mv_yld_design</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Multivariate Meta-Analysis Model (k = 189; method: ML)
+
+Variance Components:
+
+                  estim       sqrt  nlvls  fixed                   factor 
+sigma^2.1  1162023.9402  1077.9721     31     no                 ensaio_1 
+sigma^2.2  1162023.9430  1077.9721     31     no          ensaio_1/design 
+sigma^2.3    79415.6562   281.8078    189     no  ensaio_1/design/produto 
+
+Test for Residual Heterogeneity:
+QE(df = 171) = 8866.9067, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:18):
+QM(df = 17) = 191.8240, p-val &lt; .0001
+
+Model Results:
+
+                                                             estimate 
+intrcpt                                                     8676.6757 
+produtoABACUS HC (Controle Positivo)                         593.9737 
+produtoBELYAN  (Controle Positivo)                           703.7115 
+produtoFOX XPRO                                              483.3756 
+produtoOSKESTRA SC                                           406.1211 
+produtoPREVINIL                                              343.9575 
+produtotrat_A20259                                          1049.9743 
+produtoTRIDIUM                                              -559.7904 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)         2106.8579 
+design                                                      -857.1270 
+produtoABACUS HC (Controle Positivo):design                   49.1625 
+produtoBELYAN  (Controle Positivo):design                    137.1546 
+produtoFOX XPRO:design                                       246.2493 
+produtoOSKESTRA SC:design                                    210.6499 
+produtoPREVINIL:design                                       180.6118 
+produtotrat_A20259:design                                    -41.8523 
+produtoTRIDIUM:design                                        630.7642 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):design  -376.0244 
+                                                                   se     zval 
+intrcpt                                                      695.7311  12.4713 
+produtoABACUS HC (Controle Positivo)                         268.9204   2.2087 
+produtoBELYAN  (Controle Positivo)                           253.2115   2.7791 
+produtoFOX XPRO                                              362.9555   1.3318 
+produtoOSKESTRA SC                                           268.9204   1.5102 
+produtoPREVINIL                                              386.8287   0.8892 
+produtotrat_A20259                                           483.0808   2.1735 
+produtoTRIDIUM                                               555.3254  -1.0080 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)         1022.8754   2.0597 
+design                                                       249.1597  -3.4401 
+produtoABACUS HC (Controle Positivo):design                  102.7687   0.4784 
+produtoBELYAN  (Controle Positivo):design                    101.9846   1.3449 
+produtoFOX XPRO:design                                       166.7015   1.4772 
+produtoOSKESTRA SC:design                                    102.7687   2.0497 
+produtoPREVINIL:design                                       166.6902   1.0835 
+produtotrat_A20259:design                                    251.9595  -0.1661 
+produtoTRIDIUM:design                                        245.7871   2.5663 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):design   284.9971  -1.3194 
+                                                              pval       ci.lb 
+intrcpt                                                     &lt;.0001   7313.0677 
+produtoABACUS HC (Controle Positivo)                        0.0272     66.8994 
+produtoBELYAN  (Controle Positivo)                          0.0055    207.4260 
+produtoFOX XPRO                                             0.1829   -228.0041 
+produtoOSKESTRA SC                                          0.1310   -120.9532 
+produtoPREVINIL                                             0.3739   -414.2127 
+produtotrat_A20259                                          0.0297    103.1532 
+produtoTRIDIUM                                              0.3134  -1648.2082 
+produtoUNIZEB GOLD (Controle Positivo, multissítio)         0.0394    102.0590 
+design                                                      0.0006  -1345.4711 
+produtoABACUS HC (Controle Positivo):design                 0.6324   -152.2605 
+produtoBELYAN  (Controle Positivo):design                   0.1787    -62.7315 
+produtoFOX XPRO:design                                      0.1396    -80.4797 
+produtoOSKESTRA SC:design                                   0.0404      9.2269 
+produtoPREVINIL:design                                      0.2786   -146.0949 
+produtotrat_A20259:design                                   0.8681   -535.6839 
+produtoTRIDIUM:design                                       0.0103    149.0303 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):design  0.1870   -934.6085 
+                                                                 ci.ub      
+intrcpt                                                     10040.2836  *** 
+produtoABACUS HC (Controle Positivo)                         1121.0480    * 
+produtoBELYAN  (Controle Positivo)                           1199.9969   ** 
+produtoFOX XPRO                                              1194.7553      
+produtoOSKESTRA SC                                            933.1955      
+produtoPREVINIL                                              1102.1278      
+produtotrat_A20259                                           1996.7953    * 
+produtoTRIDIUM                                                528.6273      
+produtoUNIZEB GOLD (Controle Positivo, multissítio)          4111.6568    * 
+design                                                       -368.7830  *** 
+produtoABACUS HC (Controle Positivo):design                   250.5855      
+produtoBELYAN  (Controle Positivo):design                     337.0407      
+produtoFOX XPRO:design                                        572.9783      
+produtoOSKESTRA SC:design                                     412.0729    * 
+produtoPREVINIL:design                                        507.3186      
+produtotrat_A20259:design                                     451.9793      
+produtoTRIDIUM:design                                        1112.4980    * 
+produtoUNIZEB GOLD (Controle Positivo, multissítio):design    182.5596      
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mv_yld_design, <span class="at">btt =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Test of Moderators (coefficients 11:18):
+QM(df = 8) = 13.1680, p-val = 0.1062</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,167 @@
+/* ========================= */
+/*      CONFIGURAÇÕES GERAIS */
+/* ========================= */
+body {
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    color: #414487FF; /* Cor de texto padrão */
+    background-color: #f8f9fa;
+    padding-top: 60px; /* Ajuste para navbar fixa */
+}
+
+/* ========================= */
+/*      ESTILO DA NAVBAR     */
+/* ========================= */
+.navbar {
+    background-color: #ECD330; /* Cor amarela para a parte superior */
+    color: #414487FF !important;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #414487FF; /* Fundo azul claro para o menu suspenso */
+    border-radius: 8px; /* Bordas arredondadas */
+    border: 1px solid #ccc; /* Borda leve */
+}
+
+/* Itens do menu suspenso (Analysis) */
+.navbar-nav .dropdown-menu a {
+    color: #FFFFFF !important; /* Texto azul claro para os links do menu */
+    font-weight: 700; /* Texto mais grosso */
+    font-family: "Arial", sans-serif; /* Letra arredondada */
+    padding: 10px 15px;
+    display: block;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Mudar cor e fundo ao passar o mouse sobre os itens suspensos */
+.navbar-nav .dropdown-menu a:hover {
+    background-color: #ECD330 !important; /* Fundo amarelo ao passar o mouse */
+    color: #414487FF !important; /* Texto azul claro ao passar o mouse */
+    text-decoration: none;
+    font-weight: 900; /* Letra mais grossa ao passar o mouse */
+    font-family: "Arial", sans-serif; /* Garantir a fonte arredondada */
+}
+
+/* ========================= */
+/* ITENS DO MENU PRINCIPAL */
+/* ========================= */
+
+/* Quando o mouse passar sobre os itens do menu que não estão no menu suspenso */
+.navbar-nav > li > a {
+    color: #414487FF !important; /* Cor padrão para os itens do menu */
+    font-weight: 700; /* Texto mais grosso */
+    font-family: "Arial", sans-serif;
+    padding: 10px 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+
+/* ========================= */
+/*  LINKS GERAIS (Texto)     */
+/* ========================= */
+a {
+    color: #414487FF; /* Cor do texto para links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #414487FF; /* Cor do texto ao passar o mouse */
+}
+
+
+/* ========================= */
+/*      ESTILO DO SUMÁRIO    */
+/* ========================= */
+h1, h2, h3,h4 { 
+  font-family: 'Oswald', sans-serif;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  color: #6d560c;
+ 
+} 
+
+}/* ========================= */
+/*  ESTILOS PARA CÓDIGO     */
+/* ========================= */
+pre, code {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Courier New", monospace;
+    color: #414487FF; /* Cor do texto em código */
+}
+
+/* ========================= */
+/*  ESTILOS PARA RODAPÉ     */
+/* ========================= */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #6CA6CD;
+    color: #414487FF; /* Cor do texto no rodapé */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a {
+    color: #FFD700;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ========================= */
+/*  ESTILO PARA TÍTULOS     */
+/* ========================= */
+h1, h2, h3 {
+    font-family: "Georgia", serif;
+    font-weight: bold;
+    color: #414487FF; /* Cor do texto dos títulos */
+}
+
+/* ========================= */
+/*  ESTILO PARA TABELAS     */
+/* ========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #6CA6CD;
+    color: #414487FF; /* Cor do texto nas tabelas */
+}
+
+/* ========================= */
+/*  ESTILO PARA ALERTAS     */
+/* ========================= */
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #414487FF; /* Cor do texto nas mensagens de alerta */
+}
+
+.alert-info {
+    background-color: #D9EDF7;
+    color: #414487FF; /* Cor do texto nas mensagens de alerta */
+    border: 1px solid #BCE8F1;
+}
+
+.alert-warning {
+    background-color: #FCF8E3;
+    color: #414487FF; /* Cor do texto nas mensagens de alerta */
+    border: 1px solid #FAEBCC;
+}

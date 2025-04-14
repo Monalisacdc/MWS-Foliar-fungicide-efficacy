@@ -1,0 +1,311 @@
+---
+title: ""
+---
+
+# Meta-analysis for the variable yield
+
+## Packages
+
+```{r}
+#| warning: false
+#| message: false
+library(gsheet)
+library(tidyverse)
+library(broom)
+library(multcomp)
+library(metafor)
+library(tidyr)
+library(emmeans)
+```
+
+## Import the data
+
+```{r}
+dat1 = gsheet2tbl("https://docs.google.com/spreadsheets/d/1joo0WaR7yNWZavGPbwQMjiFPpWHErtGL/edit?gid=1485993259#gid=1485993259")
+
+dat1$bloco = as.factor(dat1$bloco)   # Block as a factor  
+dat1$produto = as.factor(dat1$produto)   # fungicide as a factor  
+dat1$ensaio_1 = as.factor(dat1$ensaio_1)
+```
+
+```{r}
+prod <- dat1 %>% filter(!is.na(mean_prod))
+
+prod <- dat1 %>%
+  filter(!is.na(mean_prod)) %>%
+  group_by(ensaio_1) %>%
+  mutate(num_produtos = n()) %>%
+  ungroup()
+
+total_ensaios <- prod %>%
+  summarise(total = n_distinct(ensaio_1))
+
+
+contagem_por_produto <- prod %>%
+  group_by(produto) %>%
+  summarise(
+    total_ensaios = n_distinct(ensaio_1),  # Count unique trials
+    total_anos = n_distinct(ano),         # Count unique years
+    anos = paste(sort(unique(ano)), collapse = ", "), # List sorted years
+    ensaios = paste(sort(unique(ensaio_1)), collapse = ", "), # List unique trials
+    .groups = "drop"
+  )
+aacheck= prod |>  filter(produto == "AACHECK")
+summary(aacheck)
+
+#mediana 19
+```
+
+## ANOVA for Each Trial/Study
+
+```{r}
+#ANOVA
+prod2 <- prod %>%
+  filter(mean_prod != "NA") |> 
+  group_by(ensaio_1) %>%
+  dplyr::select(ensaio_1, produto, bloco, mean_prod) %>% # Ensure grouping column is selected
+  nest(data = c(produto, bloco, mean_prod)) %>% # Nest data by group
+  dplyr::mutate(
+    aov_results = map(data, ~ tidy(aov(mean_prod ~ produto + bloco, data = .x)))
+  ) %>%
+  unnest(aov_results) %>%
+  filter(term == "Residuals") |> 
+  dplyr::select(1,6)
+```
+
+## Calculating the mean and adjusted variance
+
+```{r}
+#First: Merge the Original Spreadsheet (dat1) with the Spreadsheet Containing the ANOVA Results;
+prod3 <- left_join(prod, prod2) |> 
+ group_by(municipio,regiao, ensaio_1, produto, ano) %>% 
+  summarise(mean_prod = mean(mean_prod),
+            mean_V = mean(meansq),
+            mean_sev = mean(mean_sev),
+            n = n())
+
+#Calculating adjusted variance of severity
+
+prod3$vi_yld <- with(prod3, mean_V/4)
+
+```
+
+## Meta-analysis
+
+### Fitting model
+
+```{r}
+
+
+net_arm_UN_prod <- rma.mv(
+  mean_prod,
+  vi_yld,
+   mods = ~ produto,
+   method = "ML",
+  random = list( ~ produto | factor(ensaio_1)),
+   struct = "HCS",
+  control = list(optimizer = "nlm", verbose = TRUE),
+   data = prod3)
+ summary(net_arm_UN_prod)
+ 
+
+```
+
+### Organizing the data
+
+```{r}
+yield_res <- data.frame(cbind(net_arm_UN_prod$b, 
+                              net_arm_UN_prod$ci.lb,
+                              net_arm_UN_prod$ci.ub,
+                               net_arm_UN_prod$se)) %>%
+  mutate(fungicide = c("check", "ABACUSHC", "BAS75302F", "FOX XPRO", "OSKESTRASC", 
+                       "PREVINIL", "A20259", "TRIDIUM", "UNIZEBGOLD")) %>%
+  filter(fungicide != "check")
+
+names(yield_res) <- c("yld", "yld_lower", "yld_upper", "fungicide", "se")
+
+yield_res
+
+#write_xlsx(yield_res, "yield_res.xlsx")
+
+```
+
+### Pairwise comparison
+
+```{r}
+net_arm_UN_comp <-
+ summary(glht(
+    model = net_arm_UN_prod,
+     linfct = cbind(contrMat(rep(1, 9), type = "Tukey"))))
+
+net_arm_UN_comp
+
+plot(net_arm_UN_comp)
+
+
+mv_yld_means <- emmprep(net_arm_UN_prod)
+
+
+ mv_yld_emmeans <- emmeans(mv_yld_means, ~ produto)
+ pwpm(mv_yld_emmeans)
+```
+
+```{r}
+library(tidyverse)
+efficacy_res <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1sXr3kLjpKCZA-WUqqXrerkMBa1D61bwT/edit?gid=947435541#gid=947435541")
+yield_res <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1WKDA30xXJHkD57osKPp6ylRQPUobc0cS/edit?gid=1424387508#gid=1424387508")
+
+sev_yld = full_join(efficacy_res, yield_res)
+
+#write_csv(sev_yld, "sev_yld.csv")
+
+```
+
+#Disease pressure
+
+```{r}
+summary(prod3$mean_sev) 
+
+prod3 <- prod3 %>%
+  mutate(
+    sev_check_class = case_when(
+      mean_sev < 19 ~ "Low",
+      mean_sev >= 19 ~ "High"))
+
+library(janitor) 
+prod3 %>%
+  tabyl(produto, sev_check_class)
+```
+
+##Meta-analysis
+
+```{r}
+
+mv_yld_bas <- rma.mv(
+  mean_prod,
+  vi_yld,
+   mods = ~ produto * as.factor(sev_check_class),
+   method = "ML",
+  random = list( ~ produto | factor(ensaio_1)),
+   struct = "CS",
+  control = list(optimizer = "nlm"),
+   data = prod3)
+
+ summary(mv_yld_bas)
+ 
+ anova(mv_yld_bas, btt = 11:18)
+
+
+```
+
+Design groups
+
+```{r}
+prod31 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  summarise(produto = paste(produto, collapse=';')) 
+
+prod31 %>% 
+  tabyl(produto)
+```
+
+#d1
+
+```{r}
+prod3 <- prod3 %>%
+  group_by(ensaio_1) %>% 
+  mutate(n2 = n()) %>% 
+  filter(n2 != 1)
+
+design1 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "BELYAN  (Controle Positivo)", "FOX XPRO", "OSKESTRA SC", "PREVINIL", "trat_A20259" )) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(1, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design1
+
+```
+
+#D2
+
+```{r}
+design2 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "BELYAN  (Controle Positivo)", "FOX XPRO", "OSKESTRA SC", "TRIDIUM", "trat_A20259" )) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(2, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design2
+```
+
+#D3
+
+```{r}
+design3 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)",  "FOX XPRO", "OSKESTRA SC", "PREVINIL", "TRIDIUM", "UNIZEB GOLD (Controle Positivo, multissítio)" )) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(3, length(produto))) %>% 
+  filter(n2 == 7) %>% 
+  filter(n3 == 7)
+design3
+```
+
+#D4
+
+```{r}
+design4 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "ABACUS HC (Controle Positivo)", "OSKESTRA SC",  "UNIZEB GOLD (Controle Positivo, multissítio)" )) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(4, length(produto))) %>% 
+  filter(n2 == 4) %>% 
+  filter(n3 == 4)
+design4
+```
+
+#D5
+
+```{r}
+design5 = prod3 %>% 
+  group_by(ensaio_1) %>% 
+  filter(produto  %in% c("AACHECK", "BELYAN  (Controle Positivo)")) %>% 
+  mutate(n3 = n()) %>% 
+  mutate(design = rep(5, length(produto))) %>% 
+  filter(n2 == 2) %>% 
+  filter(n3 == 2)
+design4
+```
+
+#joining the designers
+
+```{r}
+yld_design = rbind(design1, design2, design3, design4, design5)
+
+
+yld_design %>% 
+  group_by(ensaio_1,design) %>% 
+  summarize() %>% 
+  tabyl(design)
+```
+
+Inconsistency
+
+```{r}
+mv_yld_design <- rma.mv(mean_prod,
+  vi_yld,
+  mods = ~ produto * design,
+  random = list(~ 1 | ensaio_1 / design / produto),
+  struct = "UN",
+  method = "ML",
+  control = list(optimizer = "nlm"),
+  data = yld_design)
+
+mv_yld_design
+
+anova(mv_yld_design, btt = 11:18)
+
+```

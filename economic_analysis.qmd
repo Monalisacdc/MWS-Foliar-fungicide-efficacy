@@ -1,0 +1,255 @@
+---
+title: "Untitleds"
+---
+
+$$
+L(\alpha, \beta \mid P) = \prod_{i=1}^n \frac{\beta^\alpha P_i^{\alpha-1} e^{-\beta P_i}}{\Gamma(\alpha)}
+$$
+
+# Economic Analysis
+
+## Packages
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+library(readxl)
+library(cowplot)
+library(gsheet)
+library(stats4)
+library(minpack.lm)
+library(ggdist)
+library(lubridate)
+library(ggthemes)
+library(cowplot)
+```
+
+## Import the data
+
+```{r}
+
+eff_yld_data = gsheet2tbl("https://docs.google.com/spreadsheets/d/1kTmVINkk8W_luffQew4nrMvqrvZQhe6JLjR_WzbBQT4/edit?gid=1891034819#gid=1891034819")
+
+
+cost_data = gsheet2tbl("https://docs.google.com/spreadsheets/d/11K6BssCO1_qMZEb5sU1BMpbNKE0YrACsT4tAY51KvvY/edit?gid=740235580#gid=740235580")
+
+price_data = gsheet2tbl("https://docs.google.com/spreadsheets/d/1dEC3-AckAFJ3XsWTln1KLbz4jOp3d1sV/edit?gid=1164957368#gid=1164957368") %>%
+  mutate(data = dmy(data)) |> mutate(year = year(data))
+```
+
+## Find the most appropriate theoretical distribution for corn price
+
+```{r}
+price_data %>%
+  ggplot(aes(preco))+
+  geom_histogram(bins = 20,color ="white", fill = "gray")
+```
+
+```{r}
+price_data %>%
+  ggplot(aes(as.factor(year), preco))+
+  geom_jitter(width = 0.1)
+```
+
+# FIT
+
+How well does the Gamma distribution fit the empirical data?
+
+```{r}
+# Empirical cumulative distribution function
+environment(ecdf(price_data$preco))
+
+# These are the cumulative values of the ECDF (accumulated probabilities)
+Fx = environment(ecdf(price_data$preco))$y
+# Original values
+x = environment(ecdf(price_data$preco))$x
+
+
+```
+
+## Nonlinear least squares model
+
+```{r}
+# Fits a nonlinear least squares model to the data.
+price_reg = nlsLM(Fx ~ pgamma(x, shape, rate, log = FALSE),
+      start = c(shape = 2.5, rate = 0.13),
+      control = nls.lm.control(maxiter = 1024))
+summary(price_reg)
+
+shape = summary(price_reg)$coef[1]
+rate = summary(price_reg)$coef[2]
+
+# Plot the ECDF and overlay the Gamma distribution curve
+plot(ecdf(price_data$preco))
+curve(pgamma(x, shape, rate), 0, 600, add = T, col = "red")
+```
+
+## Visualizing the histogram
+
+```{r}
+price_data %>%
+  ggplot(aes(preco))+
+ geom_histogram(aes(y = ..density..),bins = 10, color = "white", fill = "#481567FF")+
+   stat_function(fun=function(x) dgamma(x, shape,  rate), size = 1.2, color = "black")+
+  theme_bw()+
+  xlim(0,20)+
+  labs(x="Slope (kg/p.p.)", y = "Density")
+```
+
+## **Maximum Likelihood Estimation**
+
+```{r}
+MASS::fitdistr(price_data$preco, "gamma", start=list(shape=3.76, rate=0.46))
+
+plot(ecdf(price_data$preco))
+curve(pgamma(x, 3.76,  0.46),0,200,  add = T, col = "red")
+```
+
+## Visualizing the histogram
+
+```{r}
+price_data %>%
+  ggplot(aes(preco))+
+ geom_histogram(aes(y = ..density..),bins = 15, color = "white", fill = "#481567FF")+
+   stat_function(fun=function(x) dgamma(x, 3.76,  0.46), size = 1.2, color = "black")+
+  theme_bw()+
+  xlim(0,20)+
+  labs(x="Slope (kg/p.p.)", y = "Density")
+```
+
+## Non linear or MLE
+
+### Kolmogorov-Smirnov Test
+
+The Kolmogorov-Smirnov (KS) test is used to compare two cumulative distributions, testing whether the sample distributions are significantly different. The p-value resulting from the KS test indicates the probability that the data distribution is the same as the theoretical distribution (in this case, the Gamma distribution). If the p-value is small (typically less than 0.05), it suggests that the data distribution differs significantly from the theoretical distribution.
+
+```{r}
+# using regression
+ks.test(Fx, pgamma(x, shape, rate) )
+
+# using Maximum likelihood
+ks.test(Fx, pgamma(x,  3.76,  0.46))
+
+# p-value gives the probability of data distributions be equal to the theoretical distribution obtained 
+
+```
+
+# Probability distributions
+
+## Simulations
+
+```{r}
+library(truncnorm)
+```
+
+```{r}
+set.seed(1)
+n_sim = 50000
+funs = unique(eff_yld_data$fungicide)
+box1 = data.frame()
+
+for(i in 1:length(funs)){
+  # Filtering the data for the current fungicide (without using the 'region' variable)
+  single_data = eff_yld_data %>% 
+    filter(fungicide == funs[i]) # filter for the respective fungicide yield data
+
+  single_cost = cost_data %>% 
+    filter(fungicide == funs[i]) # filter for the respective fungicide cost data
+
+  cmin = single_cost$cost - single_cost$cost*0.05 # adjusting a variable cost range for that fungicide
+  cmax = single_cost$cost + single_cost$cost*0.05
+
+  C = runif(n_sim, cmin, cmax) # generating n_sim random values (50000) for product price, uniformly distributed
+
+  P = rgamma(n_sim, shape, rate)/60 # generating n_sim random values for corn price based on the equation defined in the previous code
+
+  y_mu = single_data$mean_yld # mean yield for the fungicide
+  y_se = single_data$SE_yld # standard error of yield for the fungicide
+
+  Y = rtruncnorm(n_sim, a=0, b=Inf, y_mu, y_se) # ensuring positive values in a truncated distribution
+
+  profit = (P * Y) - C # P(corn price) multiplied by mean yield. Subtract the product cost. Get profit
+
+  eventos = (C <= (P * Y)) * 1 # checking if the cost is less than or equal to profit, if true is 1, otherwise 0.
+
+  # Creating the box for each fungicide
+  lil_box = data.frame(fungicide = funs[i],
+                       C_point = single_cost$cost, # original cost
+                       C, # simulated product cost
+                       P,  # simulated corn price
+                       Y,   # simulated yield
+                       profit, # simulated profits
+                       eventos) # less than or equal to profit = 1
+
+  # Adding to the overall box
+  box1 = box1 %>% 
+    bind_rows(lil_box)
+}
+```
+
+## Probability of making a profit
+
+```{r}
+probs = box1 %>% 
+  group_by(fungicide) %>% 
+  summarise(P = round(mean(eventos), 2), #probabilidade de sucesso para cada fungicida
+            m = mean(profit),
+            lower = quantile(profit, 0.025),
+            upper = quantile(profit, 0.975)) %>% 
+  mutate(P = paste("p =", P))
+probs %>% 
+  arrange(-m)
+```
+
+#Plot
+
+```{r}
+box1 |> 
+  mutate(fungicide = factor(fungicide, levels = c("TRFX + PROT + BIX","PYRA + FLUX + MEFE",  "AZO + TEBU + MANC", "PYRA + FLUX", "PYRA + EPOX", "DIF + PYDI","MANC", "CLOR"))) |> 
+  ggplot(aes()) +
+  geom_vline(xintercept = 0, color = "gray40", size = 0.7) +
+   stat_slab(aes(profit, fungicide, alpha = stat(plogis(x / 100))),  fill = "#ff9900") +
+  #stat_pointinterval(aes(x = profit, y = fungicide), 
+   #                  position = position_dodge(width = 0.8, preserve = "single"),  
+    #                 .width = c(0.75, 0.95),
+     #                size = 1.2, color = "#313695", alpha = 0.8) +
+  geom_text(data = probs, 
+            aes(x = m, y = fungicide, label = P),
+            position = position_dodge(width = 0.8),  
+            size = 3, vjust = -3, hjust = -1.5, color = "black", fontface = "bold.italic") +  
+  geom_point(data = cost_data,
+             aes(spray, fungicide, shape = "Spray cost"),
+             size =2, color = "#d73027" )+
+  geom_text(data = cost_data,
+          aes(x = spray, y = fungicide, label = sprintf("%.1f", spray)),
+          size = 3, color = "#d73027", vjust = -0.5, hjust= 0, fontface = "bold")+
+  guides(alpha = "none", shape = "none", fill = guide_legend(title = "Profit Status")) +
+ theme_minimal_vgrid() +
+  theme(legend.position = "bottom", 
+        plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_text(size = 12),
+        axis.text.x = element_text(size = 10),
+        axis.text.y = element_text(size = 10),
+        panel.grid.major.y = element_blank(), 
+        panel.grid.minor = element_blank(),
+         panel.background = element_rect(fill = scales::alpha("white", 0.01)),
+        plot.margin = unit(c(1, 1, 1, 1), "cm")) +
+  coord_cartesian(xlim = c(-200, 450)) +
+   scale_x_continuous(breaks = seq(0, 450, by = 50))+
+  labs(x = expression(bold("Profit (US$ ha"^-1*")")),
+     y = expression(bold("Fungicide")),
+       fill = "Profit Status",
+       color = "Profit Status",
+       shape = "Cost")+
+ geom_point(data = probs, aes(x = m, y = fungicide), size = 2, color = "#313695", position = position_nudge(y = -0.2)) +
+  geom_errorbarh(data = probs, aes(xmin = lower, xmax = upper, y = fungicide), 
+                 height = 0, size= 0.6, color = "#313695", position = position_nudge(y = -0.2))+
+geom_text(data = probs, 
+          aes(x = m, y = fungicide, label = paste0("π = ", round(m, 1))),
+          position = position_dodge(width = 0.8),  
+          size = 3, vjust = -1.5, hjust = -1.5, color = "#313695", fontface = "bold.italic")
+library(patchwork)
+
+#ggsave("figures/profit.png", dpi=600, height = 7,bg = "white", width = 7)
+```

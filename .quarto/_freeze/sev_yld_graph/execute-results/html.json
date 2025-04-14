@@ -1,0 +1,15 @@
+{
+  "hash": "1d70ed6ebbafae7e5d4ecde19c057ec3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"\"\n---\n\n#sev x Yield \n\n#Packages\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(gsheet)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(scales)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ngain = gsheet2tbl(\"https://docs.google.com/spreadsheets/d/1OFccjyBsxeVPchSNfFy7hvMp23PCoZ4bt2YpInABiKg/edit?usp=sharing\") \n\n\ngain = gain |>  mutate(fungicide = recode(fungicide, \n                          'trat_A20259' = \"DIF + PYDI\",\n                          \"ABACUS HC (Controle Positivo)\"= \"PYRA + EPOX\",\n                          \"BAS 753 02 F\" = \"PYRA + FLUX + MEFE\",\n                          \"FOX XPRO\" = \"TRFX + PROT + BIX\",\n                          \"OSKESTRA SC\" = \"PYRA + FLUX\",\n                          \"PREVINIL\" = \"CLOR\",\n                          \"TRIDIUM\" = \"AZO + TEBU + MANC\",\n                           \"UNIZEB GOLD (Controle Positivo, multissítio)\" = \"MANC\"\n                          )) \ngain %>% \n  mutate(fungicide = factor(fungicide, \n                           levels = c(\"MANC\", \"CLOR\", \n                                      \"DIF + PYDI\", \"PYRA + EPOX\", \"PYRA + FLUX + MEFE\", \n                                      \"TRFX + PROT + BIX\", \"PYRA + FLUX\", \n                                      \"AZO + TEBU + MANC\"))) |> \n  ggplot(aes(mean, mean_yld)) + \n  geom_errorbar(aes(ymin = ci.lb_yld, ymax = ci.ub_yld, color = fungicide), alpha = 0.8, width=0, size= 0.8)+\n  geom_errorbarh(aes(xmin = low, xmax = up, color = fungicide), alpha = 0.8, height= 0, size= 0.8)+\n  geom_point(aes(mean, mean_yld, color = fungicide), size = 3)+\n  #scale_y_continuous(breaks=seq(0, 2500, 500), limits=c(0,2500))+\n  #scale_x_continuous(breaks=seq(0, 80, 10), limits=c(0, 80))+\n  #theme_minimal_grid()+\n  scale_color_colorblind()+\n  labs(y = \"Yield return (kg/ha)\", x = \"Efficacy (%)\", color = \"Foliar fungicide\")+\n  theme(axis.text=element_text(size=12), \n        axis.title=element_text(size=12, face = \"bold\"),\n        legend.position = \"right\",\n        legend.title.align = 0.5,\n        strip.text.x = element_text(size = 14, face = \"bold\"),\n        legend.title = element_text(size=12, face = \"bold\"))\n```\n\n::: {.cell-output-display}\n![](sev_yld_graph_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n\n```{.r .cell-code}\n#ggsave(\"yld_eff.png\", height=5, width=10, dpi = 600, bg = \"white\")\n```\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

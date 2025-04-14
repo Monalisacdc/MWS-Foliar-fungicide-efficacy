@@ -1,0 +1,29 @@
+{
+  "boxplot.qmd": {
+    "boxplot.html": "d06a2685"
+  },
+  "about.qmd": {
+    "about.html": "84afc78e"
+  },
+  "data.qmd": {
+    "data.html": "b5f2503e"
+  },
+  "economic_analysis.qmd": {
+    "economic_analysis.html": "c3667569"
+  },
+  "index.qmd": {
+    "index.html": "a934b999"
+  },
+  "map.qmd": {
+    "map.html": "2a4bd773"
+  },
+  "sev.qmd": {
+    "sev.html": "9983ec16"
+  },
+  "sev_yld_graph.qmd": {
+    "sev_yld_graph.html": "7718cd95"
+  },
+  "yld.qmd": {
+    "yld.html": "4a140700"
+  }
+}
