@@ -40,7 +40,6 @@ print(outliers)
 
 ```
 
-
 ## ANOVA for Each Trial/Study
 
 ```{r}
@@ -150,6 +149,7 @@ cld_result
 
 ```
 
+###Efficacy
 ```{r}
  efficacy_index <- data.frame(cbind(
    (1 - exp(net_arm_UN_first$b)) * 100,
@@ -173,9 +173,9 @@ write_xlsx(efficacy_index, "efficacy_res.xlsx")
 
 ```
 
-Disease pressure
+#Disease pressure
 
-Median
+##Model
 
 ```{r}
 #linha de base
@@ -198,7 +198,7 @@ model_mm <- rma.mv(
    struct = "HCS",
    control = list(optimizer = "nlm"),
    data = med_sev)
-anova(model_mm, btt = 5:6) 
+anova(model_mm, btt = 11:18) 
  summary(model_mm)
 
 table(med_sev$produto, med_sev$sev_check_class)
@@ -207,7 +207,8 @@ table(med_sev$produto, med_sev$sev_check_class)
 
 ```
 
-#organizando a saida do modelo
+###Organizing the model output
+
 
 ```{r}
 library(here)
@@ -235,7 +236,9 @@ reg4 = rbind(reg2,reg3)
 
 ```
 
-#aqui teve que calcular o lower por que o modelo da o lower com base no hight
+###Organizing 2
+
+The lower had to be calculated because the model provides the lower based on the upper.
 
 ```{r}
 mean = reg4%>% 
@@ -294,7 +297,7 @@ reg6 = full_join(High,reg5)
 
 ```
 
-Design groups
+#Design groups
 
 ```{r}
 library(janitor)
@@ -310,7 +313,7 @@ table(med_sev1$produto)
 #repete 7 vezes
 ```
 
-#D1 #conferido
+##D1 
 
 ```{r}
 med_sev <- med_sev %>%
@@ -330,7 +333,7 @@ design1 = med_sev %>%
 design1
 ```
 
-#D2 #conferido
+##D2
 
 ```{r}
 design2 = med_sev %>% 
@@ -345,7 +348,7 @@ design2
 
 ```
 
-#D3 #conferido
+##D3
 
 ```{r}
 design3 = med_sev %>% 
@@ -360,7 +363,7 @@ design3
 
 ```
 
-#D4 #conferido
+##D4 
 
 ```{r}
 design4 = med_sev %>% 
@@ -374,7 +377,7 @@ design4
 
 ```
 
-#D5 conferido
+##D5 
 
 ```{r}
 design5 = med_sev %>% 
@@ -389,7 +392,7 @@ design5
 
 ```
 
-#D6 #conferido
+##D6 
 
 ```{r}
 design6 = med_sev %>% 
@@ -402,7 +405,7 @@ design6 = med_sev %>%
 design6
 ```
 
-#D7 #Conferido
+##D7
 
 ```{r}
 design7 = med_sev %>% 
@@ -415,7 +418,7 @@ design7 = med_sev %>%
 design7
 ```
 
-#D8 #Conferido
+##D8 
 
 ```{r}
 design8 = med_sev %>% 
@@ -428,7 +431,7 @@ design8 = med_sev %>%
 design8
 ```
 
-#D9 #Conferido
+##D9 
 
 ```{r}
 design9 = med_sev %>% 
@@ -442,7 +445,8 @@ design9
 
 ```
 
-#juntando os design
+#Combining the designs
+
 
 ```{r}
 sev_design = rbind(design1, design2, design3, design4, design5, design6, design7, design8, design9)
@@ -454,7 +458,7 @@ sev_design %>%
   tabyl(design)
 ```
 
-Inconsistency
+#Inconsistency analysis
 
 ```{r}
 mv_sev_design <- rma.mv(log_sev, vi_sev,
@@ -469,8 +473,3 @@ mv_sev_design
 anova(mv_sev_design, btt = 11:18)
 
 ```
-
-
-
-
-

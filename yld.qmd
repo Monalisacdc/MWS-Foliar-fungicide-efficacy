@@ -198,7 +198,7 @@ mv_yld_bas <- rma.mv(
 
 ```
 
-Design groups
+#Design groups
 
 ```{r}
 prod31 = prod3 %>% 
@@ -209,7 +209,7 @@ prod31 %>%
   tabyl(produto)
 ```
 
-#d1
+##D1
 
 ```{r}
 prod3 <- prod3 %>%
@@ -228,7 +228,7 @@ design1
 
 ```
 
-#D2
+##D2
 
 ```{r}
 design2 = prod3 %>% 
@@ -241,7 +241,7 @@ design2 = prod3 %>%
 design2
 ```
 
-#D3
+##D3
 
 ```{r}
 design3 = prod3 %>% 
@@ -254,7 +254,7 @@ design3 = prod3 %>%
 design3
 ```
 
-#D4
+##D4
 
 ```{r}
 design4 = prod3 %>% 
@@ -267,7 +267,7 @@ design4 = prod3 %>%
 design4
 ```
 
-#D5
+##D5
 
 ```{r}
 design5 = prod3 %>% 
@@ -280,7 +280,7 @@ design5 = prod3 %>%
 design4
 ```
 
-#joining the designers
+#Joining the designers
 
 ```{r}
 yld_design = rbind(design1, design2, design3, design4, design5)
@@ -292,7 +292,7 @@ yld_design %>%
   tabyl(design)
 ```
 
-Inconsistency
+#Inconsistency analysis
 
 ```{r}
 mv_yld_design <- rma.mv(mean_prod,
